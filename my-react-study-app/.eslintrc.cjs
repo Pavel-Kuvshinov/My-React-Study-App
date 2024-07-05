@@ -29,7 +29,7 @@ module.exports = {
         project: './tsconfig.json',
         tsconfigRootDir: __dirname,
     },
-    plugins: ['@typescript-eslint', 'react', 'prettier'],
+    plugins: ['@typescript-eslint', 'react', 'react-compiler', 'prettier'],
     settings: {
         'import/resolver': {
             node: {
@@ -43,9 +43,13 @@ module.exports = {
     },
     ignorePatterns: ['*.config.cjs'],
     rules: {
+        'react-compiler/react-compiler': 'error',
         'no-shadow': 'off',
         'react/react-in-jsx-scope': 0,
         '@typescript-eslint/no-explicit-any': 2,
+        'react/state-in-constructor': 0,
+        'react/destructuring-assignment': 0,
+        'react/prefer-stateless-function': 0,
         'import/extensions': [
             'error',
             'ignorePackages',

@@ -1,5 +1,3 @@
-/* eslint-disable react/prefer-stateless-function */
-
 import { Component } from 'react';
 import './searchForm.css';
 

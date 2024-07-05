@@ -1,5 +1,3 @@
-/* eslint-disable react/state-in-constructor */
-/* eslint-disable react/destructuring-assignment */
 import { Component } from 'react';
 import './mainSection.css';
 import getRequestFropApi from '../../5_features/apiRequests';
