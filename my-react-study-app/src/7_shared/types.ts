@@ -61,5 +61,6 @@ export interface HeaderProps {
 }
 
 export interface MainSectionProps {
-    currentRequest: string;
+    header: string;
+    items: never[];
 }

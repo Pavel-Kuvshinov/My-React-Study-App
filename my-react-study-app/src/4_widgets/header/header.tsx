@@ -29,7 +29,7 @@ class Header extends Component<HeaderProps> {
             <header className="header">
                 <h1 className="header__logo">Ice and Fire</h1>
                 <button type="button" className="search_form__button" onClick={this.handleClickError}>
-                    Error
+                    Test error
                 </button>
                 <SearchForm handleRequest={this.props.handleRequest} />
             </header>
