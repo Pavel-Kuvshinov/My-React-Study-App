@@ -1,5 +1,5 @@
 const getRequestFropApi = (headers: string) => {
-    return fetch(`https://www.anapioficeandfire.com/api${headers}`, {
+    return fetch(`https://www.anapioficeandfire.com/api/${headers}`, {
         method: 'GET',
     }).then((response) => response.json());
 };

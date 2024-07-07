@@ -1,16 +1,16 @@
 import { Component } from 'react';
 import './mainSection.css';
 import getRequestFropApi from '../../5_features/apiRequests';
-import { BasicRequest } from '../../7_shared/types';
+import { BasicRequest, MainSectionProps } from '../../7_shared/types';
 
-class MainSection extends Component {
+class MainSection extends Component<MainSectionProps> {
     state = {
         items: [] as string[],
         itemsLinks: [] as string[],
     };
 
     async componentDidMount() {
-        const memResult: BasicRequest = await getRequestFropApi('/');
+        const memResult: BasicRequest = await getRequestFropApi(this.props.currentRequest);
         this.setState({
             items: Object.keys(memResult),
             itemsLinks: Object.values(memResult),
