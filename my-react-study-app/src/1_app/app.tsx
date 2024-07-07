@@ -3,6 +3,7 @@ import { Component } from 'react';
 import './app.css';
 import Header from '../4_widgets/header/header';
 import MainSection from '../4_widgets/mainSection/mainSection';
+import ErrorBoundary from '../6_entities/errorBoundary';
 
 class App extends Component {
     state = {
@@ -18,10 +19,10 @@ class App extends Component {
 
     render() {
         return (
-            <>
+            <ErrorBoundary handleRequest={this.handleCurrentRequest}>
                 <Header handleRequest={this.handleCurrentRequest} />
                 <MainSection currentRequest={this.state.currentRequest} />
-            </>
+            </ErrorBoundary>
         );
     }
 }
