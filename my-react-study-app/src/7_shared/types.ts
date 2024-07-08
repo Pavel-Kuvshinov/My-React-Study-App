@@ -58,6 +58,7 @@ export type HouseRequest = {
 
 export interface HeaderProps {
     handleRequest: (request: string) => void;
+    handleError?: () => void;
 }
 
 export interface MainSectionProps {

@@ -1,5 +1,6 @@
 import { Component, ReactNode } from 'react';
-import Header from '../4_widgets/header/header';
+import Header from '../header/header';
+import ErrorSection from '../errorSection/errorSection';
 
 interface Props {
     children: ReactNode;
@@ -20,12 +21,7 @@ class ErrorBoundary extends Component<Props> {
             return (
                 <>
                     <Header handleRequest={this.props.handleRequest} />
-                    <main className="main">
-                        <div className="main__wrapper">
-                            <p className="main__item_text-bigger">Something went wrong.</p>
-                            <p className="main__item_text-bigger">If you want, you can try to search something...</p>
-                        </div>
-                    </main>
+                    <ErrorSection />
                 </>
             );
         }
