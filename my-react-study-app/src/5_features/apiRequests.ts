@@ -7,9 +7,13 @@ const getRequestFropApi = (headers: string) => {
     return fetch(`https://www.anapioficeandfire.com/api/${headers}`, {
         method: 'GET',
     })
-        .then((response) => checkResponse<BasicRequest | BookRequest[] | CharecterRequest[] | HouseRequest[]>(response))
+        .then((response) => {
+            return checkResponse<BasicRequest | BookRequest[] | CharecterRequest[] | HouseRequest[]>(response);
+        })
         .then((result) => {
-            if (result) return { header: headers, result };
+            if (result) {
+                return { header: headers, result };
+            }
             return Promise.reject(result);
         });
 };

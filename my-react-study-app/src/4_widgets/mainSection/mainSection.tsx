@@ -23,9 +23,8 @@ class MainSection extends Component<MainSectionProps> {
                             const book = item as BookRequest;
                             return (
                                 <div className="main__item" key={`${String(index)}`}>
-                                    <p>url: {book.url}</p>
                                     <p>book number: {index + 1}</p>
-                                    <p>book: {book.name}</p>
+                                    <p>name: {book.name}</p>
                                     <p>author: {book.authors}</p>
                                 </div>
                             );
@@ -35,11 +34,10 @@ class MainSection extends Component<MainSectionProps> {
                             const character = item as CharecterRequest;
                             return (
                                 <div className="main__item" key={`${String(index)}`}>
-                                    <p>url: {character.url}</p>
                                     <p>character number: {index + 1}</p>
+                                    <p>name: {character.name}</p>
                                     <p>aliases: {character.aliases}</p>
                                     <p>gender: {character.gender}</p>
-                                    <p>name: {character.name}</p>
                                 </div>
                             );
                         })}
@@ -48,7 +46,6 @@ class MainSection extends Component<MainSectionProps> {
                             const house = item as HouseRequest;
                             return (
                                 <div className="main__item" key={`${String(index)}`}>
-                                    <p>url: {house.url}</p>
                                     <p>house number: {index + 1}</p>
                                     <p>name: {house.name}</p>
                                     <p>region: {house.region}</p>
