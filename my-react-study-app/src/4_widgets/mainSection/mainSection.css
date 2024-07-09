@@ -27,6 +27,7 @@
 }
 
 .main__item_text-bigger {
+    width: 100%;
     font-size: 2rem;
-    text-align: center;
+    text-align: left;
 }
