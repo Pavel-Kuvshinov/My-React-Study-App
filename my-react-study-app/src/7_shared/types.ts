@@ -1,59 +1,74 @@
-export type BasicRequest = {
-    books: string;
+export interface BasicApiRequest {
     characters: string;
-    houses: string;
+    locations: string;
+    episodes: string;
+}
+
+export interface ApiRequest {
+    info: RequestInfo;
+    results: CharecterRequest[] | LocationRequest[] | EpisodeRequest[];
+}
+
+export type CharectersRequest = {
+    info: RequestInfo;
+    results: CharecterRequest[];
 };
 
-export type BookRequest = {
-    authors: string[];
-    characters: string[];
-    country: string;
-    isbn: string;
-    mediaType: string;
-    name: string;
-    numberOfPages: number;
-    povCharacters: string[];
-    publisher: string;
-    released: string;
-    url: string;
+export type LocationsRequest = {
+    info: RequestInfo;
+    results: LocationRequest[];
+};
+
+export type EpisodesRequest = {
+    info: RequestInfo;
+    results: EpisodeRequest[];
 };
 
 export type CharecterRequest = {
-    aliases: string[];
-    allegiances: string[];
-    books: string[];
-    born: string;
-    culture: string;
-    died: string;
-    father: string;
-    gender: string;
-    mother: string;
+    id: number;
     name: string;
-    playedBy: string;
-    povBooks: string;
-    spouse: string;
-    titles: string;
-    tvSeries: string[];
+    status: string;
+    species: string;
+    type: string;
+    gender: string;
+    origin: RequestUrlGroup;
+    location: RequestUrlGroup;
+    image: string;
+    episode: string[];
+    url: string;
+    created: string;
+};
+
+export type LocationRequest = {
+    id: number;
+    name: string;
+    type: string;
+    dimension: string;
+    residents: string[];
+    url: string;
+    created: string;
+};
+
+export type EpisodeRequest = {
+    id: number;
+    name: string;
+    air_date: string;
+    episode: string;
+    characters: string[];
+    url: string;
+    created: string;
+};
+
+export type RequestUrlGroup = {
+    name: string;
     url: string;
 };
 
-export type HouseRequest = {
-    ancestralWeapons: string[];
-    cadetBranches: string[];
-    coatOfArms: string;
-    currentLord: string;
-    diedOut: string;
-    founded: string;
-    founder: string;
-    heir: string;
-    name: string;
-    overlord: string;
-    region: string;
-    seats: string;
-    swornMembers: string[];
-    titles: string[];
-    url: string;
-    words: string;
+export type RequestInfo = {
+    count: number;
+    next: null | string;
+    pages: number;
+    prev: null | string;
 };
 
 export interface HeaderProps {
@@ -63,5 +78,5 @@ export interface HeaderProps {
 
 export interface MainSectionProps {
     header: string;
-    items: never[];
+    items: never[] | [string, string][] | CharecterRequest[] | LocationRequest[] | EpisodeRequest[];
 }

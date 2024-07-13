@@ -1,38 +1,28 @@
-import { Component } from 'react';
-import './searchForm.css';
+import { useState } from 'react';
+
 import { HeaderProps } from '../../7_shared/types';
+import './searchForm.css';
 
-class SearchForm extends Component<HeaderProps> {
-    state = {
-        newRequest: '',
-    };
+export default function SearchForm(props: HeaderProps) {
+    const [newRequest, setNewRequest] = useState('');
+    const { handleRequest } = props;
 
-    handleNewRequestChange = (newMemRequest: string) => {
-        this.setState({
-            newRequest: newMemRequest,
-        });
-    };
-
-    render() {
-        return (
-            <form
-                className="search_form"
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    this.props.handleRequest(this.state.newRequest);
-                }}
-            >
-                <input
-                    className="search_form__input"
-                    placeholder="search..."
-                    onChange={(e) => this.handleNewRequestChange(e.target.value)}
-                />
-                <button type="submit" className="search_form__button">
-                    Search
-                </button>
-            </form>
-        );
-    }
+    return (
+        <form
+            className="search_form"
+            onSubmit={(e) => {
+                e.preventDefault();
+                handleRequest(newRequest);
+            }}
+        >
+            <input
+                className="search_form__input"
+                placeholder="search..."
+                onChange={(e) => setNewRequest(e.target.value)}
+            />
+            <button type="submit" className="search_form__button">
+                Search
+            </button>
+        </form>
+    );
 }
-
-export default SearchForm;

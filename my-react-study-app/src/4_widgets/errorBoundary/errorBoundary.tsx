@@ -7,7 +7,7 @@ interface Props {
     handleRequest: (request: string) => void;
 }
 
-class ErrorBoundary extends Component<Props> {
+export default class ErrorBoundary extends Component<Props> {
     state = { error: null };
 
     componentDidCatch(error: Error) {
@@ -28,5 +28,3 @@ class ErrorBoundary extends Component<Props> {
         return this.props.children;
     }
 }
-
-export default ErrorBoundary;

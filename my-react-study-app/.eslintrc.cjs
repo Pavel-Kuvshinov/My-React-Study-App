@@ -50,6 +50,7 @@ module.exports = {
         'react/state-in-constructor': 0,
         'react/destructuring-assignment': 0,
         'react/prefer-stateless-function': 0,
+        'react-hooks/exhaustive-deps': 0,
         'import/extensions': [
             'error',
             'ignorePackages',
