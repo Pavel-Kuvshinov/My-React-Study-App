@@ -13,10 +13,6 @@ export default function DetailedItem() {
     const [error, setError] = useState(false);
 
     const header = location.pathname.split('/')[1];
-    // const linkId = searchParams.get('id');
-    // console.log(linkId);
-    console.log(header);
-    console.log(id);
 
     const handleCurrentRequest = async (request: string) => {
         try {
