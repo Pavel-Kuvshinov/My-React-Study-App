@@ -29,7 +29,7 @@ module.exports = {
         project: './tsconfig.json',
         tsconfigRootDir: __dirname,
     },
-    plugins: ['@typescript-eslint', 'react', 'react-compiler', 'prettier'],
+    plugins: ['@typescript-eslint', 'react', 'react-compiler', 'prettier', 'jest-dom'],
     settings: {
         'import/resolver': {
             node: {
