@@ -24,6 +24,25 @@ export type EpisodesRequest = {
     results: EpisodeRequest[];
 };
 
+export type ElementRequest = {
+    id: number;
+    name: string;
+    status?: string;
+    species?: string;
+    type?: string;
+    gender?: string;
+    origin?: RequestUrlGroup;
+    location?: RequestUrlGroup;
+    image?: string;
+    episode?: string[] | string;
+    url: string;
+    created: string;
+    dimension?: string;
+    residents?: string[];
+    air_date?: string;
+    characters?: string[];
+};
+
 export type CharecterRequest = {
     id: number;
     name: string;
@@ -79,4 +98,12 @@ export interface HeaderProps {
 export interface MainSectionProps {
     header: string;
     items: never[] | [string, string][] | CharecterRequest[] | LocationRequest[] | EpisodeRequest[];
+    info: RequestInfo;
+    handleRequest: (request: string) => void;
+}
+
+export interface PaginationProps {
+    info: RequestInfo;
+    handleRequest: (request: string) => void;
+    onClick: (page: number) => void;
 }

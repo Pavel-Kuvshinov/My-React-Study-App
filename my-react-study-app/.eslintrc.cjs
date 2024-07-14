@@ -47,10 +47,12 @@ module.exports = {
         'no-shadow': 'off',
         'react/react-in-jsx-scope': 0,
         '@typescript-eslint/no-explicit-any': 2,
+        '@typescript-eslint/no-unused-vars': 0,
         'react/state-in-constructor': 0,
         'react/destructuring-assignment': 0,
         'react/prefer-stateless-function': 0,
         'react-hooks/exhaustive-deps': 0,
+        'import/no-extraneous-dependencies': 0,
         'import/extensions': [
             'error',
             'ignorePackages',

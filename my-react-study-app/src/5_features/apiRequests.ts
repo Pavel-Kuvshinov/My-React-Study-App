@@ -1,4 +1,4 @@
-import { ApiRequest, BasicApiRequest } from '../7_shared/types';
+import { ApiRequest, BasicApiRequest, ElementRequest } from '../7_shared/types';
 
 const checkResponse = <T>(res: Response): Promise<T> =>
     res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
@@ -8,7 +8,7 @@ const getRequestFropApi = (headers: string) => {
         method: 'GET',
     })
         .then((response) => {
-            return checkResponse<BasicApiRequest | ApiRequest>(response);
+            return checkResponse<BasicApiRequest | ApiRequest | ElementRequest>(response);
         })
         .then((result) => {
             if (result) {

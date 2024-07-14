@@ -1,0 +1,31 @@
+.main__pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.pagination__button {
+    display: flex;
+    font-family: var(--second-family);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 26px;
+    height: 26px;
+    border: 2px solid var(--electric-orange);
+    border-radius: 26px;
+    font-size: 2.6rem;
+    color: var(--electric-orange);
+    transition: all 0.3s;
+    cursor: pointer;
+    &:hover {
+        color: var(--deep-blue);
+        border: 2px solid var(--deep-blue);
+    }
+    &:disabled {
+        pointer-events: none;
+        color: var(--border-gray);
+        border: 2px solid var(--border-graye);
+    }
+}
