@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { HeaderProps } from '../../7_shared/types';
+import { HeaderProps } from '../../shared/types';
 import './searchForm.css';
 
 export default function SearchForm(props: HeaderProps) {

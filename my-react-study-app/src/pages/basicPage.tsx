@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
-import Header from '../4_widgets/header/header';
-import MainSection from '../4_widgets/mainSection/mainSection';
-import ErrorSection from '../4_widgets/errorSection/errorSection';
-import getRequestFropApi from '../5_features/apiRequests';
-import ErrorBoundary from '../4_widgets/errorBoundary/errorBoundary';
-import Loader from '../4_widgets/loader/loader';
+import Header from '../widgets/header/header';
+import MainSection from '../widgets/mainSection/mainSection';
+import ErrorSection from '../widgets/errorSection/errorSection';
+import getRequestFropApi from '../features/apiRequests';
+import ErrorBoundary from '../widgets/errorBoundary/errorBoundary';
+import Loader from '../widgets/loader/loader';
 import {
     BasicApiRequest,
     CharecterRequest,
@@ -13,7 +13,7 @@ import {
     LocationRequest,
     ApiRequest,
     RequestInfo,
-} from '../7_shared/types';
+} from '../shared/types';
 
 export default function BasicPage() {
     const [currentRequest, setCurrentRequest] = useState(localStorage.getItem('request') ?? '');

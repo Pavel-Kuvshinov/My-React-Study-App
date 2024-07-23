@@ -1,7 +1,7 @@
 import { Outlet, NavLink, useSearchParams } from 'react-router-dom';
 
 import './mainSection.css';
-import { CharecterRequest, EpisodeRequest, LocationRequest, MainSectionProps } from '../../7_shared/types';
+import { CharecterRequest, EpisodeRequest, LocationRequest, MainSectionProps } from '../../shared/types';
 import Pagination from '../pagination/pagination';
 
 export default function MainSection(props: MainSectionProps) {

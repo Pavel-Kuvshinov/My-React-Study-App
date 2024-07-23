@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import './app.css';
-import BasicPage from '../3_pages/basicPage';
-import NotFoundPage from '../3_pages/notFoundPage/notFoundPage';
-import DetailedItem from '../4_widgets/detailedItem/detailedItem';
+import BasicPage from '../pages/basicPage';
+import NotFoundPage from '../pages/notFoundPage/notFoundPage';
+import DetailedItem from '../widgets/detailedItem/detailedItem';
 
 export default function App() {
     return (

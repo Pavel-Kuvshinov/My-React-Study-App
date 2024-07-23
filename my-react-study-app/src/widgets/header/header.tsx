@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './header.css';
 
 import SearchForm from '../searchForm/searchFrom';
-import { HeaderProps } from '../../7_shared/types';
+import { HeaderProps } from '../../shared/types';
 
 export default function Header(props: HeaderProps) {
     const [newError, setNewError] = useState(false);

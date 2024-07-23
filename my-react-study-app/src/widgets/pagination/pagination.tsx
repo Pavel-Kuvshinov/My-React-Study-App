@@ -1,4 +1,4 @@
-import { PaginationProps } from '../../7_shared/types';
+import { PaginationProps } from '../../shared/types';
 import './pagination.css';
 
 export default function Pagination(props: PaginationProps) {

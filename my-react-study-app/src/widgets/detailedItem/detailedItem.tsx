@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation, useParams } from 'react-router-dom';
 import './detailedItem.css';
-import getRequestFropApi from '../../5_features/apiRequests';
-import { ElementRequest } from '../../7_shared/types';
+import getRequestFropApi from '../../features/apiRequests';
+import { ElementRequest } from '../../shared/types';
 import Loader from '../loader/loader';
 
 export default function DetailedItem() {
