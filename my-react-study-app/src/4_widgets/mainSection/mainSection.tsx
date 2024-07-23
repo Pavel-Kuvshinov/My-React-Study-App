@@ -25,9 +25,19 @@ export default function MainSection(props: MainSectionProps) {
                                 items.map((item, index) => {
                                     const elem = item as [string, string];
                                     return (
-                                        <div className="main__item" key={`${String(index)}`}>
+                                        <button
+                                            type="button"
+                                            className="main__item"
+                                            key={`${String(index)}`}
+                                            onClick={() => {
+                                                handleRequest(elem[0].slice(0, -1));
+                                            }}
+                                        >
                                             <p className="main__item_text">{elem[0].slice(0, -1)}</p>
-                                        </div>
+                                        </button>
+                                        // <div className="main__item" key={`${String(index)}` }>
+                                        //     <p className="main__item_text">{elem[0].slice(0, -1)}</p>
+                                        // </div>
                                     );
                                 })}
                             {header.includes('location') &&
