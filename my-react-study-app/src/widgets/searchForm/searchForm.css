@@ -2,6 +2,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    &.hide {
+        opacity: 0;
+        visibility: hidden;
+    }
 }
 
 .search_form__input {

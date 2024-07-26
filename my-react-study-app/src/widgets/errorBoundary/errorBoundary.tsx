@@ -4,7 +4,6 @@ import ErrorSection from '../errorSection/errorSection';
 
 interface Props {
     children: ReactNode;
-    handleRequest: (request: string) => void;
 }
 
 export default class ErrorBoundary extends Component<Props> {
@@ -20,7 +19,7 @@ export default class ErrorBoundary extends Component<Props> {
         if (this.state.error) {
             return (
                 <>
-                    <Header handleRequest={this.props.handleRequest} />
+                    <Header />
                     <ErrorSection />
                 </>
             );

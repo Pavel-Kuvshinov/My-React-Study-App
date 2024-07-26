@@ -2,10 +2,14 @@ import { useEffect, useState } from 'react';
 import './header.css';
 
 import SearchForm from '../searchForm/searchFrom';
-import { HeaderProps } from '../../shared/types';
+import { useAppDispatch } from '../../shared/store/store';
+import { itemsSlice } from '../../shared/store/itemsSlice';
 
-export default function Header(props: HeaderProps) {
+export default function Header() {
     const [newError, setNewError] = useState(false);
+
+    const { setStartСondition } = itemsSlice.actions;
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         if (newError) {
@@ -15,11 +19,16 @@ export default function Header(props: HeaderProps) {
 
     return (
         <header className="header">
-            <h1 className="header__logo">Rick and Morty</h1>
+            <button type="button" className="header__logo" onClick={() => dispatch(setStartСondition(''))}>
+                Rick and Morty
+            </button>
             <button type="button" className="search_form__button" onClick={() => setNewError(true)}>
                 Test error
             </button>
-            <SearchForm handleRequest={props.handleRequest} />
+            <SearchForm />
+            <button type="button" className="theme__button">
+                theme
+            </button>
         </header>
     );
 }

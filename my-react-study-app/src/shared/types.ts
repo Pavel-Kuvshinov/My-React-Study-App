@@ -6,8 +6,24 @@ export interface BasicApiRequest {
 
 export interface ApiRequest {
     info: RequestInfo;
-    results: CharecterRequest[] | LocationRequest[] | EpisodeRequest[];
+    results: ElementRequest[];
 }
+
+export interface GetCharactersParams {
+    section: string;
+    page?: number;
+    name?: string;
+}
+
+export interface GetDetailedItemParams {
+    section: string;
+    id: number | null;
+}
+
+// export interface ApiRequest {
+//     info: RequestInfo;
+//     results: CharecterRequest[] | LocationRequest[] | EpisodeRequest[];
+// }
 
 export type CharectersRequest = {
     info: RequestInfo;
@@ -104,6 +120,4 @@ export interface MainSectionProps {
 
 export interface PaginationProps {
     info: RequestInfo;
-    handleRequest: (request: string) => void;
-    onClick: (page: number) => void;
 }

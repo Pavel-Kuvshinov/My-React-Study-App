@@ -1,14 +1,18 @@
+import { useAppDispatch } from '@/shared/store/store';
+import { itemsSlice } from '../../shared/store/itemsSlice';
 import { PaginationProps } from '../../shared/types';
 import './pagination.css';
 
 export default function Pagination(props: PaginationProps) {
-    const { info, handleRequest, onClick } = props;
+    const { info } = props;
+    const { setCurrentPage } = itemsSlice.actions;
+    const dispatch = useAppDispatch();
 
     let pageNumber = 0;
-    if (info.prev) {
-        pageNumber = Number(info.prev!.split('=')[1]) + 1;
+    if (info.next !== null) {
+        pageNumber = Number(info.next!.match(/\d+/g)) - 1;
     } else {
-        pageNumber = Number(info.next!.split('=')[1]) - 1;
+        pageNumber = Number(info.prev!.match(/\d+/g)) + 1;
     }
 
     return (
@@ -18,10 +22,7 @@ export default function Pagination(props: PaginationProps) {
                 className="pagination__button"
                 disabled={info.prev === null}
                 onClick={() => {
-                    if (info.next !== null) {
-                        handleRequest(info.prev!.split('/').reverse()[0]);
-                    }
-                    onClick(pageNumber - 1);
+                    dispatch(setCurrentPage(pageNumber - 1));
                 }}
             >
                 ‹
@@ -34,10 +35,7 @@ export default function Pagination(props: PaginationProps) {
                 className="pagination__button"
                 disabled={info.next === null}
                 onClick={() => {
-                    if (info.next !== null) {
-                        handleRequest(info.next!.split('/').reverse()[0]);
-                    }
-                    onClick(pageNumber + 1);
+                    dispatch(setCurrentPage(pageNumber + 1));
                 }}
             >
                 ›

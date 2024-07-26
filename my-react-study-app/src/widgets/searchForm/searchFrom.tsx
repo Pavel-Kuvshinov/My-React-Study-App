@@ -1,25 +1,25 @@
-import { useState } from 'react';
-
-import { HeaderProps } from '../../shared/types';
 import './searchForm.css';
+import { useAppDispatch, useAppSelector } from '../../shared/store/store';
+import { itemsSlice } from '../../shared/store/itemsSlice';
 
-export default function SearchForm(props: HeaderProps) {
-    const [newRequest, setNewRequest] = useState('');
-    const { handleRequest } = props;
+export default function SearchForm() {
+    const { section } = useAppSelector((state) => state.itemsReducer);
+    const { setCurrentRequest, setCurrentPage, setCurrentId } = itemsSlice.actions;
+    const dispatch = useAppDispatch();
+
+    const onSubmitClick = (event: React.FormEvent) => {
+        event.preventDefault();
+        const form = event.target as HTMLFormElement;
+        const data = new FormData(form);
+        const query = (data.get('searchQuery') as string).trim() || '';
+        dispatch(setCurrentRequest(query));
+        dispatch(setCurrentPage(1));
+        dispatch(setCurrentId(null));
+    };
 
     return (
-        <form
-            className="search_form"
-            onSubmit={(e) => {
-                e.preventDefault();
-                handleRequest(newRequest);
-            }}
-        >
-            <input
-                className="search_form__input"
-                placeholder="search..."
-                onChange={(e) => setNewRequest(e.target.value)}
-            />
+        <form className={section !== '' ? 'search_form' : 'search_form hide'} onSubmit={onSubmitClick}>
+            <input className="search_form__input" name="searchQuery" placeholder="search..." />
             <button type="submit" className="search_form__button">
                 Search
             </button>

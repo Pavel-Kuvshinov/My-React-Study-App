@@ -1,3 +1,7 @@
+.item_detailed__cover {
+    background-color: #fff;
+}
+
 .item_detailed {
     display: flex;
     flex-direction: column;

@@ -60,7 +60,6 @@ a {
 button {
     cursor: pointer;
     background: transparent;
-    text-transform: uppercase;
     border: none;
 }
 
