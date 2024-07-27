@@ -1,0 +1,36 @@
+.main__detailed_items_controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--beige);
+    position: fixed;
+    z-index: 50;
+    bottom: 0;
+    left: 0;
+}
+
+.detailed_items_controls__text {
+    font-family: var(--font-family);
+    font-size: 1.6rem;
+}
+
+.detailed_items_controls__button {
+    display: flex;
+    width: 130px;
+    height: 40px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: var(--white);
+    background-color: var(--deep-blue);
+    transition: all 0.2s;
+    &:hover {
+        background-color: var(--electric-orange);
+    }
+}

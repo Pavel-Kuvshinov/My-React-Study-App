@@ -32,6 +32,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    text-transform: uppercase;
     color: var(--white);
     background-color: var(--deep-blue);
     transition: all 0.2s;

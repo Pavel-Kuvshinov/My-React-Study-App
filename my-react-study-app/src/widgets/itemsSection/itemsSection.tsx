@@ -9,12 +9,15 @@ import Pagination from '../pagination/pagination';
 import Loader from '../loader/loader';
 import { itemsSlice } from '../../shared/store/itemsSlice';
 import DetailedItem from '../detailedItem/detailedItem';
+import { itemsSelectedSlice } from '../../shared/store/selectedItemsSlice';
+import DetailedItemsControls from '../detailedSection/detailedItemsControls';
 
 export default function ItemsSection() {
-    // console.log('rerender items section');
     const { currentRequest, currentPage, currentId, section, loading } = useAppSelector((state) => state.itemsReducer);
-    const params: GetCharactersParams = { section, name: currentRequest, page: currentPage };
+    const { selectedItems } = useAppSelector((state) => state.itemsSelectedReducer);
+    const { setSelectedItems, unsetSelectedItems } = itemsSelectedSlice.actions;
     const { setLoading, setCurrentId } = itemsSlice.actions;
+    const params: GetCharactersParams = { section, name: currentRequest, page: currentPage };
     const dispatch = useAppDispatch();
     const { data } = itemsApi.useGetItemsQuery(params);
 
@@ -43,17 +46,35 @@ export default function ItemsSection() {
                                                 className="main__item"
                                                 key={`${section}-${String(index)}`}
                                                 id={`${currentItem.id}`}
-                                                onClick={() => {
-                                                    dispatch(setCurrentId(currentItem.id));
-                                                    document.body.style.overflow = 'hidden';
-                                                    document.body.style.userSelect = 'none';
+                                                onClick={(e) => {
+                                                    const targetElem = e.target as HTMLElement;
+                                                    if (!targetElem.classList.contains('main__item-checkbox')) {
+                                                        dispatch(setCurrentId(currentItem.id));
+                                                        document.body.style.overflow = 'hidden';
+                                                        document.body.style.userSelect = 'none';
+                                                    }
                                                 }}
                                             >
+                                                <input
+                                                    className="main__item-checkbox"
+                                                    type="checkbox"
+                                                    checked={selectedItems.some(
+                                                        (elem) => JSON.stringify(elem) === JSON.stringify(currentItem)
+                                                    )}
+                                                    onChange={(e) => {
+                                                        if (e.target.checked) {
+                                                            dispatch(setSelectedItems(currentItem));
+                                                        } else {
+                                                            dispatch(unsetSelectedItems(currentItem));
+                                                        }
+                                                    }}
+                                                />
                                                 <p>name: {currentItem.name}</p>
                                             </button>
                                         );
                                     })}
                                 </div>
+                                {selectedItems.length > 0 ? <DetailedItemsControls /> : <></>}
                             </div>
                             {currentId === null ? <></> : <DetailedItem />}
                         </div>

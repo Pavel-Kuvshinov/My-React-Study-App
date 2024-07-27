@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RequestInfo, CharecterRequest, EpisodeRequest, LocationRequest } from '../types';
 import { itemsApi } from '../api/itemsApi';
 
 interface ItemsState {
@@ -8,9 +7,6 @@ interface ItemsState {
     currentPage: number;
     currentId: number | null;
     section: string;
-    startItems: [string, string][];
-    items: CharecterRequest[] | LocationRequest[] | EpisodeRequest[];
-    info: RequestInfo;
     loading: boolean;
     loadingCard: boolean;
     error: boolean;
@@ -21,14 +17,6 @@ const initialState: ItemsState = {
     currentPage: 1,
     currentId: null,
     section: '',
-    startItems: [],
-    items: [],
-    info: {
-        count: 0,
-        next: null,
-        pages: 0,
-        prev: null,
-    },
     loading: true,
     loadingCard: true,
     error: false,

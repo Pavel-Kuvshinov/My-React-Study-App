@@ -1,10 +1,12 @@
 import { TypedUseSelectorHook, useDispatch as dispatchHook, useSelector as selectorHook } from 'react-redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import itemsReducer from './itemsSlice';
+import itemsSelectedReducer from './selectedItemsSlice';
 import { itemsApi } from '../api/itemsApi';
 
 const rootReducer = combineReducers({
     itemsReducer,
+    itemsSelectedReducer,
     [itemsApi.reducerPath]: itemsApi.reducer,
 });
 

@@ -20,11 +20,6 @@ export interface GetDetailedItemParams {
     id: number | null;
 }
 
-// export interface ApiRequest {
-//     info: RequestInfo;
-//     results: CharecterRequest[] | LocationRequest[] | EpisodeRequest[];
-// }
-
 export type CharectersRequest = {
     info: RequestInfo;
     results: CharecterRequest[];
