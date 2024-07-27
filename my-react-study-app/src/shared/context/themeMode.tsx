@@ -1,5 +1,4 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
-/* eslint-disable import/prefer-default-export */
+// useMemo hook to try
 import { createContext, ReactNode, useContext, useState } from 'react';
 
 interface IThemeContext {

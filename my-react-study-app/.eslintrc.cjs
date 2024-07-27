@@ -56,6 +56,7 @@ module.exports = {
         'jsx-a11y/control-has-associated-label': 0,
         'jsx-a11y/click-events-have-key-events': 0,
         'jsx-a11y/no-static-element-interactions': 0,
+        'react/jsx-no-constructed-context-values': 0,
         'import/extensions': [
             'error',
             'ignorePackages',

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { useAppSelector } from '@/shared/store/store';
 import Header from '../widgets/header/header';
 import ErrorSection from '../widgets/errorSection/errorSection';
