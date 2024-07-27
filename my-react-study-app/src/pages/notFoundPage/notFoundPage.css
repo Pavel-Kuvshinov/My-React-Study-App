@@ -1,10 +1,16 @@
-.notfound {
+.notFound {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100vh;
+    &.light {
+        background-color: var(--beige);
+    }
+    &.dark {
+        background-color: var(--deep-blue);
+    }
 }
 
 .notFound__wrapper {
@@ -19,6 +25,12 @@
     font-family: var(--font-family);
     font-size: 3.6rem;
     font-weight: 600;
+    &.light {
+        color: var(--deep-blue);
+    }
+    &.dark {
+        color: var(--beige);
+    }
 }
 
 .notFound-button {
@@ -30,7 +42,7 @@
     color: var(--white);
     transition: all 0.5s;
     &:hover {
-        background: var(--deep-blue);
+        background-color: var(--deep-blue);
     }
 }
 
@@ -39,5 +51,10 @@
     font-weight: 500;
     font-size: 1.4rem;
     line-height: 150%;
-    color: var(--deep-blue);
+    &.light {
+        color: var(--deep-blue);
+    }
+    &.dark {
+        color: var(--beige);
+    }
 }

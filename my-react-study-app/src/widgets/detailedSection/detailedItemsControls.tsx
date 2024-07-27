@@ -2,8 +2,10 @@ import { CSVLink } from 'react-csv';
 import { itemsSelectedSlice } from '../../shared/store/selectedItemsSlice';
 import { useAppDispatch, useAppSelector } from '../../shared/store/store';
 import './detailedItemsControls.css';
+import { useTheme } from '../../shared/context/themeMode';
 
 export default function DetailedItemsControls() {
+    const { isDark } = useTheme();
     const { selectedItems } = useAppSelector((state) => state.itemsSelectedReducer);
     const { unsetAllSelectedItems } = itemsSelectedSlice.actions;
     const dispatch = useAppDispatch();
@@ -34,18 +36,21 @@ export default function DetailedItemsControls() {
     };
 
     return (
-        <div className="main__detailed_items_controls">
-            <p className="detailed_items_controls__text">
+        <div className={isDark ? 'main__detailed_items_controls dark' : 'main__detailed_items_controls light'}>
+            <p className={isDark ? 'detailed_items_controls__text dark' : 'detailed_items_controls__text light'}>
                 Selected items: <b>{selectedItems.length}</b>
             </p>
             <button
-                className="detailed_items_controls__button"
+                className={isDark ? 'detailed_items_controls__button dark' : 'detailed_items_controls__button light'}
                 type="button"
                 onClick={() => dispatch(unsetAllSelectedItems())}
             >
                 Unselect all
             </button>
-            <CSVLink className="detailed_items_controls__button" {...csvReport}>
+            <CSVLink
+                className={isDark ? 'detailed_items_controls__button dark' : 'detailed_items_controls__button light'}
+                {...csvReport}
+            >
                 Download csv
             </CSVLink>
         </div>

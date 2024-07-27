@@ -11,8 +11,10 @@ import { itemsSlice } from '../../shared/store/itemsSlice';
 import DetailedItem from '../detailedItem/detailedItem';
 import { itemsSelectedSlice } from '../../shared/store/selectedItemsSlice';
 import DetailedItemsControls from '../detailedSection/detailedItemsControls';
+import { useTheme } from '../../shared/context/themeMode';
 
 export default function ItemsSection() {
+    const { isDark } = useTheme();
     const { currentRequest, currentPage, currentId, section, loading } = useAppSelector((state) => state.itemsReducer);
     const { selectedItems } = useAppSelector((state) => state.itemsSelectedReducer);
     const { setSelectedItems, unsetSelectedItems } = itemsSelectedSlice.actions;
@@ -32,7 +34,7 @@ export default function ItemsSection() {
             {loading ? (
                 <Loader />
             ) : (
-                <main className="main">
+                <main className={isDark ? 'main dark' : 'main light'}>
                     <div className="main__wrapper">
                         <div className="main__content">
                             <div className="main__search_section">
@@ -43,7 +45,7 @@ export default function ItemsSection() {
                                         return (
                                             <button
                                                 type="button"
-                                                className="main__item"
+                                                className={isDark ? 'main__item dark' : 'main__item light'}
                                                 key={`${section}-${String(index)}`}
                                                 id={`${currentItem.id}`}
                                                 onClick={(e) => {

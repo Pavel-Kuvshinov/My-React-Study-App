@@ -23,6 +23,16 @@
     padding: 1.3rem 1.6rem;
     transition: all 0.5s;
     outline: none;
+    &.light {
+        background-color: var(--white);
+        border: 1px solid var(--border-gray);
+        color: var(--deep-blue);
+    }
+    &.dark {
+        background-color: var(--ink-light);
+        border: 1px solid var(--ink-light);
+        color: var(--white);
+    }
 }
 
 .search_form__button {
@@ -33,10 +43,19 @@
     align-items: center;
     justify-content: center;
     text-transform: uppercase;
-    color: var(--white);
-    background-color: var(--deep-blue);
     transition: all 0.2s;
-    &:hover {
+    &.light {
+        background-color: var(--deep-blue);
+        color: var(--white);
+    }
+    &.light:hover {
+        background-color: var(--electric-orange);
+    }
+    &.dark {
+        background-color: var(--turquoise);
+        color: var(--white);
+    }
+    &.dark:hover {
         background-color: var(--electric-orange);
     }
 }

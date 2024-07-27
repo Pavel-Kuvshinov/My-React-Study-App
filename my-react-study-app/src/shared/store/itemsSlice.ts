@@ -7,6 +7,7 @@ interface ItemsState {
     currentPage: number;
     currentId: number | null;
     section: string;
+    isDark: boolean;
     loading: boolean;
     loadingCard: boolean;
     error: boolean;
@@ -17,6 +18,7 @@ const initialState: ItemsState = {
     currentPage: 1,
     currentId: null,
     section: '',
+    isDark: false,
     loading: true,
     loadingCard: true,
     error: false,
@@ -50,6 +52,9 @@ export const itemsSlice = createSlice({
         },
         setCurrentId: (state, action: PayloadAction<number | null>) => {
             state.currentId = action.payload;
+        },
+        setIsDark: (state, action: PayloadAction<boolean>) => {
+            state.isDark = action.payload;
         },
     },
 

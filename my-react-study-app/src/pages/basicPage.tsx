@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { useAppSelector } from '@/shared/store/store';
 import Header from '../widgets/header/header';
 import ErrorSection from '../widgets/errorSection/errorSection';
@@ -6,8 +7,8 @@ import ItemsSection from '../widgets/itemsSection/itemsSection';
 import StartSection from '../widgets/startSection/startSection';
 
 export default function BasicPage() {
-    // console.log('rerender basic page');
     const { section, error } = useAppSelector((state) => state.itemsReducer);
+
     return (
         <ErrorBoundary>
             <Header />

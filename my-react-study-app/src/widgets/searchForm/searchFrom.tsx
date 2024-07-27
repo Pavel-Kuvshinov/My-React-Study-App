@@ -1,8 +1,10 @@
 import './searchForm.css';
 import { useAppDispatch, useAppSelector } from '../../shared/store/store';
 import { itemsSlice } from '../../shared/store/itemsSlice';
+import { useTheme } from '../../shared/context/themeMode';
 
 export default function SearchForm() {
+    const { isDark } = useTheme();
     const { section } = useAppSelector((state) => state.itemsReducer);
     const { setCurrentRequest, setCurrentPage, setCurrentId } = itemsSlice.actions;
     const dispatch = useAppDispatch();
@@ -19,8 +21,12 @@ export default function SearchForm() {
 
     return (
         <form className={section !== '' ? 'search_form' : 'search_form hide'} onSubmit={onSubmitClick}>
-            <input className="search_form__input" name="searchQuery" placeholder="search..." />
-            <button type="submit" className="search_form__button">
+            <input
+                className={isDark ? 'search_form__input dark' : 'search_form__input light'}
+                name="searchQuery"
+                placeholder="search..."
+            />
+            <button type="submit" className={isDark ? 'search_form__button dark' : 'search_form__button light'}>
                 Search
             </button>
         </form>

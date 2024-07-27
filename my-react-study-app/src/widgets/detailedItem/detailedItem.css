@@ -1,6 +1,11 @@
 .item_detailed__cover {
     margin-top: 20px;
-    background-color: #fff;
+    &.light {
+        background-color: var(--white);
+    }
+    &.dark {
+        background-color: var(--ink-light);
+    }
 }
 
 .item_detailed {
@@ -39,6 +44,12 @@
 
 .item_detailed__text {
     font-size: 1.6rem;
+    &.light {
+        color: var(--deep-blue);
+    }
+    &.dark {
+        color: var(--white);
+    }
 }
 
 .item_detailed__img {
