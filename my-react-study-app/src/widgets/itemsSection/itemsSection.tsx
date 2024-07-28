@@ -61,7 +61,7 @@ export default function ItemsSection(props: ItemsSectionProps) {
                                                     data-testid="item-checkbox"
                                                     className="main__item-checkbox"
                                                     type="checkbox"
-                                                    checked={selectedItems.some(
+                                                    checked={selectedItems?.some(
                                                         (elem) => JSON.stringify(elem) === JSON.stringify(currentItem)
                                                     )}
                                                     onChange={(e) => {
@@ -77,7 +77,7 @@ export default function ItemsSection(props: ItemsSectionProps) {
                                         );
                                     })}
                                 </div>
-                                {selectedItems.length > 0 ? <DetailedItemsControls /> : <></>}
+                                {selectedItems!.length > 0 ? <DetailedItemsControls /> : <></>}
                             </div>
                             {currentId === null ? <></> : <DetailedItem />}
                         </div>

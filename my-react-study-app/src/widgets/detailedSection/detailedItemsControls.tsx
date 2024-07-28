@@ -32,13 +32,13 @@ export default function DetailedItemsControls() {
     const csvReport = {
         data: selectedItems,
         headers,
-        filename: `${selectedItems.length}_selectedItems.csv`,
+        filename: `${selectedItems?.length}_selectedItems.csv`,
     };
 
     return (
         <div className={isDark ? 'main__detailed_items_controls dark' : 'main__detailed_items_controls light'}>
             <p className={isDark ? 'detailed_items_controls__text dark' : 'detailed_items_controls__text light'}>
-                Selected items: <b>{selectedItems.length}</b>
+                Selected items: <b>{selectedItems?.length}</b>
             </p>
             <button
                 className={isDark ? 'detailed_items_controls__button dark' : 'detailed_items_controls__button light'}
