@@ -41,7 +41,7 @@ module.exports = {
             },
         },
     },
-    ignorePatterns: ['*.config.cjs'],
+    ignorePatterns: ['*.config.cjs', 'handlers.ts'],
     rules: {
         'react-compiler/react-compiler': 'error',
         'no-shadow': 'off',
