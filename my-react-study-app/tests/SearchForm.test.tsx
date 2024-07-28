@@ -1,47 +1,38 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
 import { Provider } from 'react-redux';
-import StartSection from '../src/widgets/startSection/startSection';
-import { store, useAppSelector } from '../src/shared/store/store';
+import SearchForm from '../src/widgets/searchForm/searchFrom';
+import { store } from '../src/shared/store/store';
 import { ThemeProvider } from '../src/shared/context/themeMode';
 import * as storeHooks from '../src/shared/store/store';
 
-describe('Start section', () => {
-    it('Here should be start section', () => {
+describe('Search form', () => {
+    it('Here should be search form', () => {
         render(
             <Provider store={store}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
-                        <StartSection />
+                        <SearchForm />
                     </MemoryRouter>
                 </ThemeProvider>
             </Provider>
         );
     });
-
-    it('Clicking the start item button saves the section name to the storage', async () => {
+    it('Send search form calls dispatch', () => {
         const func = vi.spyOn(storeHooks, 'useAppDispatch');
         render(
             <Provider store={store}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
-                        <StartSection />
+                        <SearchForm />
                     </MemoryRouter>
                 </ThemeProvider>
             </Provider>
         );
-
-        const characterButton = screen.getByRole('button', { name: 'character' });
-        await fireEvent.click(characterButton);
-        expect(func).toHaveBeenCalled();
-
-        const episodeButton = screen.getByRole('button', { name: 'episode' });
-        await fireEvent.click(episodeButton);
-        expect(func).toHaveBeenCalled();
-
-        const locationButton = screen.getByRole('button', { name: 'location' });
-        await fireEvent.click(characterButton);
+        const form = screen.getByTestId('search-form');
+        fireEvent.submit(form);
         expect(func).toHaveBeenCalled();
     });
 });

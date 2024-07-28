@@ -4,7 +4,7 @@ import './itemsSection.css';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../shared/store/store';
 import { itemsApi } from '../../shared/api/itemsApi';
-import { ElementRequest, GetCharactersParams } from '../../shared/types';
+import { ElementRequest, GetCharactersParams, ItemsSectionProps } from '../../shared/types';
 import Pagination from '../pagination/pagination';
 import Loader from '../loader/loader';
 import { itemsSlice } from '../../shared/store/itemsSlice';
@@ -13,15 +13,14 @@ import { itemsSelectedSlice } from '../../shared/store/selectedItemsSlice';
 import DetailedItemsControls from '../detailedSection/detailedItemsControls';
 import { useTheme } from '../../shared/context/themeMode';
 
-export default function ItemsSection() {
+export default function ItemsSection(props: ItemsSectionProps) {
     const { isDark } = useTheme();
     const { currentRequest, currentPage, currentId, section, loading } = useAppSelector((state) => state.itemsReducer);
     const { selectedItems } = useAppSelector((state) => state.itemsSelectedReducer);
     const { setSelectedItems, unsetSelectedItems } = itemsSelectedSlice.actions;
     const { setLoading, setCurrentId } = itemsSlice.actions;
-    const params: GetCharactersParams = { section, name: currentRequest, page: currentPage };
     const dispatch = useAppDispatch();
-    const { data } = itemsApi.useGetItemsQuery(params);
+    const { data } = props;
 
     useEffect(() => {
         if (data) {
@@ -45,6 +44,7 @@ export default function ItemsSection() {
                                         return (
                                             <button
                                                 type="button"
+                                                data-testid="item-button"
                                                 className={isDark ? 'main__item dark' : 'main__item light'}
                                                 key={`${section}-${String(index)}`}
                                                 id={`${currentItem.id}`}
@@ -58,6 +58,7 @@ export default function ItemsSection() {
                                                 }}
                                             >
                                                 <input
+                                                    data-testid="item-checkbox"
                                                     className="main__item-checkbox"
                                                     type="checkbox"
                                                     checked={selectedItems.some(

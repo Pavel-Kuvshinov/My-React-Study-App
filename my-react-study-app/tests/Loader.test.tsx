@@ -7,7 +7,7 @@ import Loader from '../src/widgets/loader/loader';
 import { store } from '../src/shared/store/store';
 import { ThemeProvider } from '../src/shared/context/themeMode';
 
-describe('Header', () => {
+describe('Loader', () => {
     it('Here should be loader', () => {
         render(<Loader />);
     });

@@ -40,6 +40,7 @@ export default function DetailedItem() {
                 ) : (
                     <div className="item_detailed">
                         <button
+                            data-testid="button-close-detailed"
                             type="button"
                             className="item_detailed__button-close"
                             onClick={() => {

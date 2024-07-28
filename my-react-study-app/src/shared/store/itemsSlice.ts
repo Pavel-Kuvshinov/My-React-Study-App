@@ -56,6 +56,9 @@ export const itemsSlice = createSlice({
         setIsDark: (state, action: PayloadAction<boolean>) => {
             state.isDark = action.payload;
         },
+        setError: (state, action: PayloadAction<boolean>) => {
+            state.error = action.payload;
+        },
     },
 
     extraReducers: (builder) => {

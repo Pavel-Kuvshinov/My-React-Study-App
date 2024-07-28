@@ -7,10 +7,13 @@ export default defineConfig({
     base: '',
     plugins: [react()],
     test: {
+        globals: true,
         environment: 'jsdom',
-        setupFiles: ['./setupTest.ts'],
-        testMatch: ['./tests/**/*.test.tsx'],
-        globals: true
+        setupFiles: ['./src/shared/setupTests/setupTests.ts'],
+        coverage: {
+        provider: 'v8',
+        reporter: ['text'],
+        },
     },
     server: {
         port: 3000,

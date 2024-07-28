@@ -116,3 +116,11 @@ export interface MainSectionProps {
 export interface PaginationProps {
     info: RequestInfo;
 }
+
+export interface ItemsSectionProps {
+    data: ApiRequest | undefined;
+}
+
+export interface DetailedItemProps {
+    data: ElementRequest | undefined;
+}

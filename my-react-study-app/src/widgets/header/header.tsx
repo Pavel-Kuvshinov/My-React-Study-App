@@ -10,16 +10,9 @@ import brightness from '../../shared/assets/brightness-icon.svg';
 import moon from '../../shared/assets/moon-icon.svg';
 
 export default function Header() {
-    const [newError, setNewError] = useState(false);
     const { isDark, toggleTheme } = useTheme();
-    const { setStartСondition } = itemsSlice.actions;
+    const { setStartСondition, setError } = itemsSlice.actions;
     const dispatch = useAppDispatch();
-
-    useEffect(() => {
-        if (newError) {
-            throw new Error('I crashed!');
-        }
-    }, [newError]);
 
     return (
         <header className={isDark ? 'header dark' : 'header light'}>
@@ -30,15 +23,16 @@ export default function Header() {
             >
                 Rick and Morty
             </button>
-            <button
+            {/* <button
                 type="button"
                 className={isDark ? 'search_form__button dark' : 'search_form__button light'}
-                onClick={() => setNewError(true)}
+                onClick={() => setError(true)}
             >
                 Test error
-            </button>
+            </button> */}
             <SearchForm />
             <button
+                data-testid="button-theme"
                 type="button"
                 className={isDark ? 'theme__button dark' : 'theme__button light'}
                 onClick={toggleTheme}

@@ -1,10 +1,14 @@
-import { useAppDispatch } from '@/shared/store/store';
+import { useAppDispatch, useAppSelector } from '@/shared/store/store';
+import { itemsApi } from '../../shared/api/itemsApi';
 import { itemsSlice } from '../../shared/store/itemsSlice';
-import { PaginationProps } from '../../shared/types';
+import { GetCharactersParams, PaginationProps } from '../../shared/types';
 import './pagination.css';
 
 export default function Pagination(props: PaginationProps) {
     const { info } = props;
+    const { currentRequest, currentPage, currentId, section, loading } = useAppSelector((state) => state.itemsReducer);
+    const params: GetCharactersParams = { section, name: currentRequest, page: currentPage };
+    const { data } = itemsApi.useGetItemsQuery(params);
     const { setCurrentPage } = itemsSlice.actions;
     const dispatch = useAppDispatch();
 

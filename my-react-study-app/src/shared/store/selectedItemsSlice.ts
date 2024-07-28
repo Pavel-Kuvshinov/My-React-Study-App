@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ElementRequest } from '../types';
 
 interface ItemsState {
-    selectedItems: ElementRequest[];
+    selectedItems: ElementRequest[] | null;
 }
 
 const initialState: ItemsState = {
@@ -15,11 +15,11 @@ export const itemsSelectedSlice = createSlice({
     initialState,
     reducers: {
         setSelectedItems: (state, action: PayloadAction<ElementRequest>) => {
-            state.selectedItems.push(action.payload);
+            state.selectedItems!.push(action.payload);
         },
         unsetSelectedItems: (state, action: PayloadAction<ElementRequest>) => {
-            state.selectedItems.splice(
-                state.selectedItems.findIndex((elem) => JSON.stringify(elem) === JSON.stringify(action.payload)),
+            state.selectedItems!.splice(
+                state.selectedItems!.findIndex((elem) => JSON.stringify(elem) === JSON.stringify(action.payload)),
                 1
             );
         },
@@ -30,3 +30,4 @@ export const itemsSelectedSlice = createSlice({
 });
 
 export default itemsSelectedSlice.reducer;
+export const { setSelectedItems, unsetSelectedItems, unsetAllSelectedItems } = itemsSelectedSlice.actions;

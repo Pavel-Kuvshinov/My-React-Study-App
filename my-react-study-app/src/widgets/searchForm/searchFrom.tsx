@@ -20,12 +20,12 @@ export default function SearchForm() {
     };
 
     return (
-        <form className={section !== '' ? 'search_form' : 'search_form hide'} onSubmit={onSubmitClick}>
-            <input
-                className={isDark ? 'search_form__input dark' : 'search_form__input light'}
-                name="searchQuery"
-                placeholder="search..."
-            />
+        <form
+            data-testid="search-form"
+            className={section !== '' ? 'search_form' : 'search_form hide'}
+            onSubmit={onSubmitClick}
+        >
+            <input className="search_form__input" name="searchQuery" placeholder="search..." />
             <button type="submit" className={isDark ? 'search_form__button dark' : 'search_form__button light'}>
                 Search
             </button>
