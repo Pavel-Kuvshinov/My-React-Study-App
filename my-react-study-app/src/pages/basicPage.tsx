@@ -1,4 +1,5 @@
 import { useAppSelector } from '@/shared/store/store';
+import { Outlet } from 'react-router-dom';
 import Header from '../widgets/header/header';
 import ErrorSection from '../widgets/errorSection/errorSection';
 import ErrorBoundary from '../widgets/errorBoundary/errorBoundary';
@@ -11,7 +12,7 @@ export default function BasicPage() {
     return (
         <ErrorBoundary>
             <Header />
-            {error === true ? <ErrorSection /> : section === '' ? <StartSection /> : <ItemsSection />}
+            {error === true ? <ErrorSection /> : section === '' ? <StartSection /> : <Outlet />}
         </ErrorBoundary>
     );
 }

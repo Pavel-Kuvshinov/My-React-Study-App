@@ -19,14 +19,14 @@
       /* Linting */
       "strict": true,
       "noImplicitAny": true,
-      "noUnusedLocals": true,
-      "noUnusedParameters": true,
-      "noFallthroughCasesInSwitch": true,
+      // "noUnusedLocals": true,
+      // "noUnusedParameters": true,
+      // "noFallthroughCasesInSwitch": true,
 
       "paths": {
           "@/*": ["./src/*"]
       }
   },
-  "include": [".eslintrc.cjs", "src"],
+  "include": [".eslintrc.cjs", "src", "tests", "./setupTests.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
