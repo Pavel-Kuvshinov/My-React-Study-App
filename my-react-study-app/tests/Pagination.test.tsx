@@ -14,7 +14,7 @@ describe('Pagination tests', () => {
         const { info } = mockCharactersData;
 
         render(
-            <Provider store={store}>
+            <Provider store={store()}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <Pagination
@@ -35,7 +35,7 @@ describe('Pagination tests', () => {
         const func = vi.spyOn(storeHooks, 'useAppDispatch');
 
         render(
-            <Provider store={store}>
+            <Provider store={store()}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <Pagination

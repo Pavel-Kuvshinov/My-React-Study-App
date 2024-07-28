@@ -11,7 +11,7 @@ import * as storeHooks from '../src/shared/store/store';
 describe('Search form', () => {
     it('Here should be search form', () => {
         render(
-            <Provider store={store}>
+            <Provider store={store()}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <SearchForm />
@@ -23,7 +23,7 @@ describe('Search form', () => {
     it('Send search form calls dispatch', () => {
         const func = vi.spyOn(storeHooks, 'useAppDispatch');
         render(
-            <Provider store={store}>
+            <Provider store={store()}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <SearchForm />

@@ -13,7 +13,7 @@ import * as storeHooks from '../src/shared/store/store';
 describe('Items section', () => {
     it('Here should be items section', () => {
         render(
-            <Provider store={store}>
+            <Provider store={store()}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <ItemsSection data={mockCharactersData} />
@@ -24,7 +24,7 @@ describe('Items section', () => {
     });
     it('verify that the component renders the specified number of cards', async () => {
         render(
-            <Provider store={store}>
+            <Provider store={store()}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <ItemsSection data={mockCharactersData} />
@@ -39,7 +39,7 @@ describe('Items section', () => {
     it('verify selecting item', async () => {
         const func = vi.spyOn(storeHooks, 'useAppDispatch');
         render(
-            <Provider store={store}>
+            <Provider store={store()}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <ItemsSection data={mockCharactersData} />

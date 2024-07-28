@@ -17,11 +17,9 @@
     font-size: 1.6rem;
     text-transform: none;
     text-transform: none;
-    &.light {
-        background-color: var(--white);
-        border: 2px solid var(--deep-blue);
-        color: var(--deep-blue);
-    }
+    background-color: var(--white);
+    border: 2px solid var(--deep-blue);
+    color: var(--deep-blue);
     &.dark {
         background-color: var(--deep-blue);
         border: 2px solid var(--beige);

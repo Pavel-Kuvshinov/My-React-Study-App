@@ -9,7 +9,7 @@ import { ThemeProvider } from '../src/shared/context/themeMode';
 describe('Ensure that the 404 page is displayed when navigating to an invalid route.', () => {
     it('should render - Sorry, there is no data for your requiest', async () => {
         render(
-            <Provider store={store}>
+            <Provider store={store()}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/caqsseE']}>
                         <App />

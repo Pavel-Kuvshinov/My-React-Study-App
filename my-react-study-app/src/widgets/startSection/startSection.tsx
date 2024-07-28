@@ -9,7 +9,7 @@ export default function StartSection() {
     const dispatch = useAppDispatch();
 
     return (
-        <main className={isDark ? 'main dark' : 'main light'}>
+        <main className={isDark ? 'main dark' : 'main'}>
             <div className="main__wrapper">
                 <div className="main__content">
                     <div className="main__search_section">

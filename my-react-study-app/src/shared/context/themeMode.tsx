@@ -1,5 +1,4 @@
-// useMemo hook to try
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext, ReactNode, useContext, useMemo, useState } from 'react';
 
 interface IThemeContext {
     isDark: boolean;
@@ -28,5 +27,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
         setIsDark((prev) => !prev);
     };
 
-    return <ThemeContext.Provider value={{ isDark, toggleTheme }}>{children}</ThemeContext.Provider>;
+    const memoValue = useMemo(() => ({ isDark, toggleTheme }), [isDark]);
+
+    return <ThemeContext.Provider value={memoValue}>{children}</ThemeContext.Provider>;
 }

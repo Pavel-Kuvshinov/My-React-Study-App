@@ -7,9 +7,7 @@ import ItemsSection from '../widgets/itemsSection/itemsSection';
 export default function App() {
     return (
         <Routes>
-            <Route path="/" element={<BasicPage />}>
-                <Route index element={<ItemsSection />} />
-            </Route>
+            <Route path="/" element={<BasicPage />} />
             <Route path="*" element={<NotFoundPage />} />
         </Routes>
     );

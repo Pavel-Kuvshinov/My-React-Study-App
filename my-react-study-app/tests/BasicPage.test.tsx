@@ -13,7 +13,7 @@ import BasicPage from '../src/pages/basicPage';
 describe('Basic page', () => {
     it('Here should be basic page', () => {
         render(
-            <Provider store={store}>
+            <Provider store={store()}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <BasicPage />
@@ -21,5 +21,37 @@ describe('Basic page', () => {
                 </ThemeProvider>
             </Provider>
         );
+    });
+
+    it('Should be light theme', () => {
+        const { container } = render(
+            <Provider store={store()}>
+                <ThemeProvider>
+                    <MemoryRouter initialEntries={['/']}>
+                        <BasicPage />
+                    </MemoryRouter>
+                </ThemeProvider>
+            </Provider>
+        );
+        expect(container.firstElementChild?.classList.contains('dark')).toBeFalsy();
+    });
+
+    it('Should be dark theme', async () => {
+        const funcTheme = vi.spyOn(themeHook, 'useTheme');
+        const { container } = render(
+            <Provider store={store()}>
+                <ThemeProvider>
+                    <MemoryRouter initialEntries={['/']}>
+                        <BasicPage />
+                    </MemoryRouter>
+                </ThemeProvider>
+            </Provider>
+        );
+
+        const themeBtn = screen.getByTestId('button-theme');
+        await fireEvent.click(themeBtn);
+
+        expect(funcTheme).toHaveBeenCalled();
+        expect(container.firstElementChild?.className.includes('dark')).toBeTruthy();
     });
 });
