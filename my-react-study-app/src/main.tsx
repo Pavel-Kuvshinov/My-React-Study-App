@@ -10,7 +10,7 @@ import { ThemeProvider } from './shared/context/themeMode';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <Provider store={store()}>
+        <Provider store={store}>
             <BrowserRouter>
                 <ThemeProvider>
                     <App />

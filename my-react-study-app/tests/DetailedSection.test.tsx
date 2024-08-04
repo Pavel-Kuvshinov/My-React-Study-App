@@ -10,7 +10,7 @@ import * as storeHooks from '../src/shared/store/store';
 describe('Header', () => {
     it('Here should be detailed section', () => {
         render(
-            <Provider store={store()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <DetailedItemsControls />
@@ -26,7 +26,7 @@ describe('Header', () => {
 
     it('should have a download link with correct href', async () => {
         render(
-            <Provider store={store()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <DetailedItemsControls />
@@ -42,7 +42,7 @@ describe('Header', () => {
     it('Click on the unselect all button unselects all items', () => {
         const func = vi.spyOn(storeHooks, 'useAppDispatch');
         render(
-            <Provider store={store()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <DetailedItemsControls />

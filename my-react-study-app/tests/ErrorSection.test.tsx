@@ -10,7 +10,7 @@ import { ThemeProvider } from '../src/shared/context/themeMode';
 describe('Header', () => {
     it('Here should be error section', () => {
         render(
-            <Provider store={store()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <ErrorSection />

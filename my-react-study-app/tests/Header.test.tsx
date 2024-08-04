@@ -13,7 +13,7 @@ import * as themeHook from '../src/shared/context/themeMode';
 describe('Header', () => {
     it('Here should be header', () => {
         render(
-            <Provider store={store()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <Header />
@@ -29,7 +29,7 @@ describe('Header', () => {
     it('Click on the logo goes to the start section', () => {
         const func = vi.spyOn(storeHooks, 'useAppDispatch');
         render(
-            <Provider store={store()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <Header />
@@ -45,7 +45,7 @@ describe('Header', () => {
     it('Click on the button changed theme', () => {
         const funcTheme = vi.spyOn(themeHook, 'useTheme');
         render(
-            <Provider store={store()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <Header />

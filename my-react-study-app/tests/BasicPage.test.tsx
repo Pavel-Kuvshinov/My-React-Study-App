@@ -13,7 +13,7 @@ import BasicPage from '../src/pages/basicPage';
 describe('Basic page', () => {
     it('Here should be basic page', () => {
         render(
-            <Provider store={store()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <BasicPage />
@@ -25,7 +25,7 @@ describe('Basic page', () => {
 
     it('Should be light theme', () => {
         const { container } = render(
-            <Provider store={store()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <BasicPage />
@@ -39,7 +39,7 @@ describe('Basic page', () => {
     it('Should be dark theme', async () => {
         const funcTheme = vi.spyOn(themeHook, 'useTheme');
         const { container } = render(
-            <Provider store={store()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <BasicPage />

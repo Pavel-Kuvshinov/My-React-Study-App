@@ -5,6 +5,6 @@ import { server } from './server';
 
 expect.extend(matchers);
 
-beforeAll(() => server.listen());
+beforeAll(() => server.listen({ onUnhandledRequest: 'bypass' }));
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());

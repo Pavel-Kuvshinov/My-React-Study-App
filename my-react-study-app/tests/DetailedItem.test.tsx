@@ -11,7 +11,7 @@ import * as storeHooks from '../src/shared/store/store';
 describe('Detailed item tests', () => {
     it('Here should be detailed item', () => {
         render(
-            <Provider store={store()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
                         <DetailedItem />
