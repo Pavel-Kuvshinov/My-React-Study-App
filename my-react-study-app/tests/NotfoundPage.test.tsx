@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
 import { Provider } from 'react-redux';
-import App from '../src/app/app';
+import App from '../src/2_app/app';
 import { store } from '../src/shared/store/store';
 import { ThemeProvider } from '../src/shared/context/themeMode';
 

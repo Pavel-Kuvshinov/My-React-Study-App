@@ -1,6 +1,6 @@
+import styles from './startSection.module.css';
 import { useAppDispatch } from '../../shared/store/store';
 import { itemsSlice } from '../../shared/store/itemsSlice';
-import './startSection.css';
 import { useTheme } from '../../shared/context/themeMode';
 
 export default function StartSection() {
@@ -9,28 +9,40 @@ export default function StartSection() {
     const dispatch = useAppDispatch();
 
     return (
-        <main className={isDark ? 'main dark' : 'main'}>
-            <div className="main__wrapper">
-                <div className="main__content">
-                    <div className="main__search_section">
-                        <div className="main__items">
+        <main className={isDark ? `${styles.main} ${styles.dark}` : `${styles.main} ${styles.light}`}>
+            <div className={styles.main__wrapper}>
+                <div className={styles.main__content}>
+                    <div className={styles.main__search_section}>
+                        <div className={styles.main__items}>
                             <button
                                 type="button"
-                                className={isDark ? 'start__item dark' : 'start__item light'}
+                                className={
+                                    isDark
+                                        ? `${styles.start__item} ${styles.dark}`
+                                        : `${styles.start__item} ${styles.light}`
+                                }
                                 onClick={() => dispatch(setSection('character'))}
                             >
                                 character
                             </button>
                             <button
                                 type="button"
-                                className={isDark ? 'start__item dark' : 'start__item light'}
+                                className={
+                                    isDark
+                                        ? `${styles.start__item} ${styles.dark}`
+                                        : `${styles.start__item} ${styles.light}`
+                                }
                                 onClick={() => dispatch(setSection('episode'))}
                             >
                                 episode
                             </button>
                             <button
                                 type="button"
-                                className={isDark ? 'start__item dark' : 'start__item light'}
+                                className={
+                                    isDark
+                                        ? `${styles.start__item} ${styles.dark}`
+                                        : `${styles.start__item} ${styles.light}`
+                                }
                                 onClick={() => dispatch(setSection('location'))}
                             >
                                 location

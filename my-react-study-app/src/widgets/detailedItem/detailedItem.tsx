@@ -1,4 +1,4 @@
-import './detailedItem.css';
+import styles from './detailedItem.module.css';
 
 import { useEffect } from 'react';
 import { itemsSlice } from '../../shared/store/itemsSlice';
@@ -26,7 +26,7 @@ export default function DetailedItem() {
 
     return (
         <div
-            className="main__detailed_section"
+            className={styles.main__detailed_section}
             onClick={(e) => {
                 const elem = e.target as HTMLElement;
                 if (elem.classList.contains('main__detailed_section')) dispatch(setCurrentId(null));
@@ -34,15 +34,21 @@ export default function DetailedItem() {
                 document.body.style.userSelect = 'auto';
             }}
         >
-            <div className={isDark ? 'item_detailed__cover dark' : 'item_detailed__cover light'}>
+            <div
+                className={
+                    isDark
+                        ? `${styles.item_detailed__cover} ${styles.dark}`
+                        : `${styles.item_detailed__cover} ${styles.light}`
+                }
+            >
                 {loadingCard ? (
                     <Loader />
                 ) : (
-                    <div className="item_detailed">
+                    <div className={styles.item_detailed}>
                         <button
                             data-testid="button-close-detailed"
                             type="button"
-                            className="item_detailed__button-close"
+                            className={styles.item_detailed__button_close}
                             onClick={() => {
                                 dispatch(setCurrentId(null));
                                 document.body.style.overflow = 'auto';
@@ -52,56 +58,140 @@ export default function DetailedItem() {
                             &times;
                         </button>
                         {section.includes('location') && (
-                            <div className="item_detailed__wrapper">
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                            <div className={styles.item_detailed__wrapper}>
+                                <p
+                                    className={
+                                        isDark
+                                            ? `${styles.item_detailed__text} ${styles.dark}`
+                                            : `${styles.item_detailed__text} ${styles.light}`
+                                    }
+                                >
                                     Location: <b>{data?.name}</b>
                                 </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                <p
+                                    className={
+                                        isDark
+                                            ? `${styles.item_detailed__text} ${styles.dark}`
+                                            : `${styles.item_detailed__text} ${styles.light}`
+                                    }
+                                >
                                     Type: <b>{data?.type}</b>
                                 </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                <p
+                                    className={
+                                        isDark
+                                            ? `${styles.item_detailed__text} ${styles.dark}`
+                                            : `${styles.item_detailed__text} ${styles.light}`
+                                    }
+                                >
                                     Dimension: <b>{data?.dimension}</b>
                                 </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                <p
+                                    className={
+                                        isDark
+                                            ? `${styles.item_detailed__text} ${styles.dark}`
+                                            : `${styles.item_detailed__text} ${styles.light}`
+                                    }
+                                >
                                     Total residets: <b>{data?.residents?.length}</b>
                                 </p>
                             </div>
                         )}
                         {section.includes('character') && (
-                            <div className="item_detailed__wrapper">
-                                <img className="item_detailed__img" src={data?.image} alt={data?.name} />
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                            <div className={styles.item_detailed__wrapper}>
+                                <img className={styles.item_detailed__img} src={data?.image} alt={data?.name} />
+                                <p
+                                    className={
+                                        isDark
+                                            ? `${styles.item_detailed__text} ${styles.dark}`
+                                            : `${styles.item_detailed__text} ${styles.light}`
+                                    }
+                                >
                                     Name: <b>{data?.name}</b>
                                 </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                <p
+                                    className={
+                                        isDark
+                                            ? `${styles.item_detailed__text} ${styles.dark}`
+                                            : `${styles.item_detailed__text} ${styles.light}`
+                                    }
+                                >
                                     Status: <b>{data?.status}</b>
                                 </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                <p
+                                    className={
+                                        isDark
+                                            ? `${styles.item_detailed__text} ${styles.dark}`
+                                            : `${styles.item_detailed__text} ${styles.light}`
+                                    }
+                                >
                                     Species: <b>{data?.species}</b>
                                 </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                <p
+                                    className={
+                                        isDark
+                                            ? `${styles.item_detailed__text} ${styles.dark}`
+                                            : `${styles.item_detailed__text} ${styles.light}`
+                                    }
+                                >
                                     Type: <b>{data?.type}</b>
                                 </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                <p
+                                    className={
+                                        isDark
+                                            ? `${styles.item_detailed__text} ${styles.dark}`
+                                            : `${styles.item_detailed__text} ${styles.light}`
+                                    }
+                                >
                                     Hender: <b>{data?.gender}</b>
                                 </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                <p
+                                    className={
+                                        isDark
+                                            ? `${styles.item_detailed__text} ${styles.dark}`
+                                            : `${styles.item_detailed__text} ${styles.light}`
+                                    }
+                                >
                                     Total episodes: <b>{data?.episode?.length}</b>
                                 </p>
                             </div>
                         )}
                         {section.includes('episode') && (
-                            <div className="item_detailed__wrapper">
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                            <div className={styles.item_detailed__wrapper}>
+                                <p
+                                    className={
+                                        isDark
+                                            ? `${styles.item_detailed__text} ${styles.dark}`
+                                            : `${styles.item_detailed__text} ${styles.light}`
+                                    }
+                                >
                                     Episode: <b>{data?.name}</b>
                                 </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                <p
+                                    className={
+                                        isDark
+                                            ? `${styles.item_detailed__text} ${styles.dark}`
+                                            : `${styles.item_detailed__text} ${styles.light}`
+                                    }
+                                >
                                     Date: <b>{data?.air_date}</b>
                                 </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                <p
+                                    className={
+                                        isDark
+                                            ? `${styles.item_detailed__text} ${styles.dark}`
+                                            : `${styles.item_detailed__text} ${styles.light}`
+                                    }
+                                >
                                     Code: <b>{data?.episode}</b>
                                 </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                <p
+                                    className={
+                                        isDark
+                                            ? `${styles.item_detailed__text} ${styles.dark}`
+                                            : `${styles.item_detailed__text} ${styles.light}`
+                                    }
+                                >
                                     Total characters: <b>{data?.characters?.length}</b>
                                 </p>
                             </div>

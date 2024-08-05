@@ -1,14 +1,10 @@
-import { useAppDispatch, useAppSelector } from '@/shared/store/store';
-import { itemsApi } from '../../shared/api/itemsApi';
+import { useAppDispatch } from '../../shared/store/store';
 import { itemsSlice } from '../../shared/store/itemsSlice';
-import { GetCharactersParams, PaginationProps } from '../../shared/types';
-import './pagination.css';
+import { PaginationProps } from '../../shared/types';
+import styles from './pagination.module.css';
 
 export default function Pagination(props: PaginationProps) {
     const { info } = props;
-    const { currentRequest, currentPage, currentId, section, loading } = useAppSelector((state) => state.itemsReducer);
-    const params: GetCharactersParams = { section, name: currentRequest, page: currentPage };
-    const { data } = itemsApi.useGetItemsQuery(params);
     const { setCurrentPage } = itemsSlice.actions;
     const dispatch = useAppDispatch();
 
@@ -20,10 +16,10 @@ export default function Pagination(props: PaginationProps) {
     }
 
     return (
-        <div className="main__pagination">
+        <div className={styles.main__pagination}>
             <button
                 type="button"
-                className="pagination__button"
+                className={styles.pagination__button}
                 disabled={info.prev === null}
                 onClick={() => {
                     dispatch(setCurrentPage(pageNumber - 1));
@@ -31,12 +27,12 @@ export default function Pagination(props: PaginationProps) {
             >
                 ‹
             </button>
-            <button type="button" className="pagination__button" disabled>
+            <button type="button" className={styles.pagination__button} disabled>
                 {pageNumber}
             </button>
             <button
                 type="button"
-                className="pagination__button"
+                className={styles.pagination__button}
                 disabled={info.next === null}
                 onClick={() => {
                     dispatch(setCurrentPage(pageNumber + 1));

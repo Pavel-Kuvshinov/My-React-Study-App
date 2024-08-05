@@ -1,4 +1,5 @@
-import './searchForm.css';
+import styles from './searchForm.module.css';
+
 import { useAppDispatch, useAppSelector } from '../../shared/store/store';
 import { itemsSlice } from '../../shared/store/itemsSlice';
 import { useTheme } from '../../shared/context/themeMode';
@@ -22,11 +23,18 @@ export default function SearchForm() {
     return (
         <form
             data-testid="search-form"
-            className={section !== '' ? 'search_form' : 'search_form hide'}
+            className={section !== '' ? `${styles.search_form}` : `${styles.search_form} ${styles.hide}`}
             onSubmit={onSubmitClick}
         >
-            <input className="search_form__input" name="searchQuery" placeholder="search..." />
-            <button type="submit" className={isDark ? 'search_form__button dark' : 'search_form__button light'}>
+            <input className={styles.search_form__input} name="searchQuery" placeholder="search..." />
+            <button
+                type="submit"
+                className={
+                    isDark
+                        ? `${styles.search_form__button} ${styles.dark}`
+                        : `${styles.search_form__button} ${styles.light}`
+                }
+            >
                 Search
             </button>
         </form>

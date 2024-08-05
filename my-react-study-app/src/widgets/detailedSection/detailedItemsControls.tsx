@@ -1,7 +1,8 @@
-import { CSVLink } from 'react-csv';
+// import { CSVLink } from 'react-csv';
+import styles from './detailedItemsControls.module.css';
+
 import { itemsSelectedSlice } from '../../shared/store/selectedItemsSlice';
 import { useAppDispatch, useAppSelector } from '../../shared/store/store';
-import './detailedItemsControls.css';
 import { useTheme } from '../../shared/context/themeMode';
 
 export default function DetailedItemsControls() {
@@ -36,23 +37,43 @@ export default function DetailedItemsControls() {
     };
 
     return (
-        <div className={isDark ? 'main__detailed_items_controls dark' : 'main__detailed_items_controls light'}>
-            <p className={isDark ? 'detailed_items_controls__text dark' : 'detailed_items_controls__text light'}>
+        <div
+            className={
+                isDark
+                    ? `${styles.main__detailed_items_controls} ${styles.dark}`
+                    : `${styles.main__detailed_items_controls} ${styles.light}`
+            }
+        >
+            <p
+                className={
+                    isDark
+                        ? `${styles.detailed_items_controls__text} ${styles.dark}`
+                        : `${styles.detailed_items_controls__text} ${styles.light}`
+                }
+            >
                 Selected items: <b>{selectedItems?.length}</b>
             </p>
             <button
-                className={isDark ? 'detailed_items_controls__button dark' : 'detailed_items_controls__button light'}
+                className={
+                    isDark
+                        ? `${styles.detailed_items_controls__button} ${styles.dark}`
+                        : `${styles.detailed_items_controls__button} ${styles.light}`
+                }
                 type="button"
                 onClick={() => dispatch(unsetAllSelectedItems())}
             >
                 Unselect all
             </button>
-            <CSVLink
-                className={isDark ? 'detailed_items_controls__button dark' : 'detailed_items_controls__button light'}
+            <button
+                className={
+                    isDark
+                        ? `${styles.detailed_items_controls__button} ${styles.dark}`
+                        : `${styles.detailed_items_controls__button} ${styles.light}`
+                }
                 {...csvReport}
             >
                 Download csv
-            </CSVLink>
+            </button>
         </div>
     );
 }
