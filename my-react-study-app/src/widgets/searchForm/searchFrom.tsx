@@ -1,12 +1,15 @@
 import styles from './searchForm.module.css';
 
-import { useAppDispatch, useAppSelector } from '../../shared/store/store';
+import { useAppDispatch } from '../../shared/store/store';
 import { itemsSlice } from '../../shared/store/itemsSlice';
 import { useTheme } from '../../shared/context/themeMode';
 
-export default function SearchForm() {
+export interface SearchFormProps {
+    section: string;
+}
+
+export default function SearchForm({ section }: SearchFormProps) {
     const { isDark } = useTheme();
-    const { section } = useAppSelector((state) => state.itemsReducer);
     const { setCurrentRequest, setCurrentPage, setCurrentId } = itemsSlice.actions;
     const dispatch = useAppDispatch();
 

@@ -7,7 +7,7 @@ import { useTheme } from '../../shared/context/themeMode';
 
 export default function DetailedItemsControls() {
     const { isDark } = useTheme();
-    const { selectedItems } = useAppSelector((state) => state.itemsSelectedReducer);
+    const { selectedItems } = useAppSelector((state) => state.itemsSelected);
     const { unsetAllSelectedItems } = itemsSelectedSlice.actions;
     const dispatch = useAppDispatch();
 

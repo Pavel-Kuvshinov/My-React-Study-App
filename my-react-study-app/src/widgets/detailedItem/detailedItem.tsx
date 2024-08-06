@@ -9,7 +9,7 @@ import { useTheme } from '../../shared/context/themeMode';
 
 export default function DetailedItem() {
     const { isDark } = useTheme();
-    const { currentId, section, loadingCard } = useAppSelector((state) => state.itemsReducer);
+    const { currentId, section, loadingCard } = useAppSelector((state) => state.items);
     const { setCurrentId, setLoadingCard } = itemsSlice.actions;
     const detailedItemParams = {
         section,

@@ -7,10 +7,9 @@ import { wrapper } from '../src/shared/store/store';
 import ErrorBoundary from '../src/widgets/errorBoundary/errorBoundary';
 import { ThemeProvider } from '../src/shared/context/themeMode';
 
-export default function MyApp({ Component, ...pageProps }: AppProps) {
-    const { store } = wrapper.useWrappedStore(pageProps);
+export default function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <Provider store={store}>
+        <Provider store={wrapper.useWrappedStore(pageProps).store}>
             <Head>
                 <meta charSet="UTF-8" />
                 <meta content="width=device-width, initial-scale=1" name="viewport" />

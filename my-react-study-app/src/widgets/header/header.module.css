@@ -54,7 +54,7 @@
     }
 }
 
-.theme__button-icon {
+.theme__button_icon {
     display: flex;
     align-items: center;
     justify-content: center;

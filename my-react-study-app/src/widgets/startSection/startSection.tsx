@@ -1,12 +1,23 @@
 import styles from './startSection.module.css';
-import { useAppDispatch } from '../../shared/store/store';
-import { itemsSlice } from '../../shared/store/itemsSlice';
 import { useTheme } from '../../shared/context/themeMode';
+import { useRouter } from 'next/router';
+// import { useAppDispatch } from '../../shared/store/store';
+// import { itemsSlice } from '../../shared/store/itemsSlice';
 
 export default function StartSection() {
     const { isDark } = useTheme();
-    const { setSection } = itemsSlice.actions;
-    const dispatch = useAppDispatch();
+    // const { setSection } = itemsSlice.actions;
+    // const dispatch = useAppDispatch();
+
+    const router = useRouter();
+    const { query } = router;
+
+    const updateQueryParams = (section: string) => {
+        router.push({
+            pathname: router.pathname,
+            query: { ...query, section: section },
+        });
+    };
 
     return (
         <main className={isDark ? `${styles.main} ${styles.dark}` : `${styles.main} ${styles.light}`}>
@@ -21,7 +32,7 @@ export default function StartSection() {
                                         ? `${styles.start__item} ${styles.dark}`
                                         : `${styles.start__item} ${styles.light}`
                                 }
-                                onClick={() => dispatch(setSection('character'))}
+                                onClick={() => updateQueryParams('character')}
                             >
                                 character
                             </button>
@@ -32,7 +43,7 @@ export default function StartSection() {
                                         ? `${styles.start__item} ${styles.dark}`
                                         : `${styles.start__item} ${styles.light}`
                                 }
-                                onClick={() => dispatch(setSection('episode'))}
+                                onClick={() => updateQueryParams('episode')}
                             >
                                 episode
                             </button>
@@ -43,7 +54,7 @@ export default function StartSection() {
                                         ? `${styles.start__item} ${styles.dark}`
                                         : `${styles.start__item} ${styles.light}`
                                 }
-                                onClick={() => dispatch(setSection('location'))}
+                                onClick={() => updateQueryParams('location')}
                             >
                                 location
                             </button>
