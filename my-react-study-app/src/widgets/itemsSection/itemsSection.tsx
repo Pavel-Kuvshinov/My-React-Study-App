@@ -18,7 +18,7 @@ export default function ItemsSection(props: ItemsSectionProps) {
     const { setLoading, setCurrentId } = itemsSlice.actions;
     const dispatch = useAppDispatch();
     const { data, dataItem } = props;
-    console.log(dataItem);
+    // console.log(dataItem);
 
     return (
         <>
@@ -60,6 +60,11 @@ export default function ItemsSection(props: ItemsSectionProps) {
                                                     type="button"
                                                     data-testid="item-button"
                                                     id={`${currentItem.id}`}
+                                                    className={
+                                                        isDark
+                                                            ? `constant-class ${styles.main__item_button} ${styles.dark}`
+                                                            : `constant-class ${styles.main__item_button} ${styles.light}`
+                                                    }
                                                     onClick={(e) => {
                                                         const targetElem = e.target as HTMLElement;
                                                         if (!targetElem.classList.contains('main__item_checkbox')) {

@@ -23,8 +23,8 @@ export interface MainPageProps {
 export default function HomePage({ itemsData, section, itemData }: MainPageProps): JSX.Element {
     console.log('itemsData');
     console.log(itemsData);
-    console.log('section');
-    console.log(section);
+    // console.log('section');
+    // console.log(section);
     // const { loading, error } = useAppSelector((state) => state.items);
     // const { setLoading } = itemsSlice.actions;
     // const dispatch = useAppDispatch();

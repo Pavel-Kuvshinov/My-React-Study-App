@@ -1,12 +1,19 @@
-import { useAppDispatch } from '../../shared/store/store';
-import { itemsSlice } from '../../shared/store/itemsSlice';
 import { PaginationProps } from '../../shared/types';
 import styles from './pagination.module.css';
+import { useRouter } from 'next/router';
 
 export default function Pagination(props: PaginationProps) {
     const { info } = props;
-    const { setCurrentPage } = itemsSlice.actions;
-    const dispatch = useAppDispatch();
+    console.log(info);
+    const router = useRouter();
+    const { query } = router;
+
+    const updateQueryParams = (page: number) => {
+        router.push({
+            pathname: router.pathname,
+            query: { ...query, currentPage: page },
+        });
+    };
 
     let pageNumber = 0;
     if (info.next !== null) {
@@ -22,7 +29,7 @@ export default function Pagination(props: PaginationProps) {
                 className={styles.pagination__button}
                 disabled={info.prev === null}
                 onClick={() => {
-                    dispatch(setCurrentPage(pageNumber - 1));
+                    updateQueryParams(pageNumber - 1);
                 }}
             >
                 ‹
@@ -35,7 +42,8 @@ export default function Pagination(props: PaginationProps) {
                 className={styles.pagination__button}
                 disabled={info.next === null}
                 onClick={() => {
-                    dispatch(setCurrentPage(pageNumber + 1));
+                    console.log(pageNumber + 1);
+                    updateQueryParams(pageNumber + 1);
                 }}
             >
                 ›
