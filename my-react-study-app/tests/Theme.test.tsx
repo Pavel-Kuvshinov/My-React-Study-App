@@ -4,7 +4,8 @@ import Header from '../src/widgets/header/header';
 
 describe('useTheme', () => {
     it('Should throw error if used outside provider', () => {
+        const section = 'character';
         vi.spyOn(console, 'error').mockImplementation(() => null);
-        expect(() => render(<Header />)).toThrowError();
+        expect(() => render(<Header section={section} />)).toThrowError();
     });
 });

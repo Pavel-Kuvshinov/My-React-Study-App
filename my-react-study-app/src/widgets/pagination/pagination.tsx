@@ -14,6 +14,11 @@ export default function Pagination(props: PaginationProps) {
         });
     };
 
+    console.log('router');
+    console.log(router);
+    console.log('query');
+    console.log(query);
+
     let pageNumber = 0;
     if (info.next !== null) {
         pageNumber = Number(info.next!.match(/\d+/g)) - 1;

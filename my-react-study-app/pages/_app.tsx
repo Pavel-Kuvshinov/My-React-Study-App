@@ -17,11 +17,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                 <link rel="icon" type="image/svg+xml" href="/vite.svg" />
                 <title>Rick & Morty App</title>
             </Head>
-            <ErrorBoundary>
-                <ThemeProvider>
-                    <Component {...pageProps} />
-                </ThemeProvider>
-            </ErrorBoundary>
+            <ThemeProvider>
+                <Component {...pageProps} />
+            </ThemeProvider>
         </Provider>
     );
 }

@@ -1,34 +1,46 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { HttpResponse, http } from 'msw';
-import { describe, expect, it, vi } from 'vitest';
+import { afterAll, afterEach, describe, expect, it, vi } from 'vitest';
 import { Provider } from 'react-redux';
 import ItemsSection from '../src/widgets/itemsSection/itemsSection';
-import { store } from '../src/shared/store/store';
+import { makeStore } from '../src/shared/store/store';
 import { ThemeProvider } from '../src/shared/context/themeMode';
 import { mockCharactersData } from '../src/shared/mocks/mockedData/cards';
 import * as storeHooks from '../src/shared/store/store';
 
+vi.mock('next/router', () => vi.importActual('next-router-mock'));
+
 describe('Items section', () => {
+    afterEach(() => {
+        vi.clearAllMocks();
+    });
+
+    afterAll(() => {
+        vi.restoreAllMocks();
+    });
+
     it('Here should be items section', () => {
+        const itemsData = mockCharactersData;
+        const section = 'character';
+        const id = 1;
+        const itemData = mockCharactersData.results[0];
         render(
-            <Provider store={store}>
+            <Provider store={makeStore()}>
                 <ThemeProvider>
-                    <MemoryRouter initialEntries={['/']}>
-                        <ItemsSection data={mockCharactersData} />
-                    </MemoryRouter>
+                    <ItemsSection data={itemsData} section={section} idItem={id} dataItem={itemData} />
                 </ThemeProvider>
             </Provider>
         );
     });
     it('verify that the component renders the specified number of cards', async () => {
+        const itemsData = mockCharactersData;
+        const section = 'character';
+        const id = 1;
+        const itemData = mockCharactersData.results[0];
         render(
-            <Provider store={store}>
+            <Provider store={makeStore()}>
                 <ThemeProvider>
-                    <MemoryRouter initialEntries={['/']}>
-                        <ItemsSection data={mockCharactersData} />
-                    </MemoryRouter>
+                    <ItemsSection data={itemsData} section={section} idItem={id} dataItem={itemData} />
                 </ThemeProvider>
             </Provider>
         );
@@ -38,12 +50,14 @@ describe('Items section', () => {
     });
     it('verify selecting item', async () => {
         const func = vi.spyOn(storeHooks, 'useAppDispatch');
+        const itemsData = mockCharactersData;
+        const section = 'character';
+        const id = 1;
+        const itemData = mockCharactersData.results[0];
         render(
-            <Provider store={store}>
+            <Provider store={makeStore()}>
                 <ThemeProvider>
-                    <MemoryRouter initialEntries={['/']}>
-                        <ItemsSection data={mockCharactersData} />
-                    </MemoryRouter>
+                    <ItemsSection data={itemsData} section={section} idItem={id} dataItem={itemData} />
                 </ThemeProvider>
             </Provider>
         );
