@@ -34,7 +34,7 @@ export default function ItemsSection(props: ItemsSectionProps) {
                     <div className={styles.main__wrapper}>
                         <div className={styles.main__content}>
                             <div className={styles.main__search_section}>
-                                <div className={styles.main__search_section}>
+                                <div className={styles.main__items}>
                                     {Object.keys(data!.info).length !== 0 && <Pagination info={data!.info} />}
                                     {data?.results.map((item, index) => {
                                         const currentItem = item as ElementRequest;
