@@ -9,8 +9,6 @@ export const itemsApi = createApi({
     endpoints: (builder) => ({
         getItems: builder.query<ApiRequest, GetCharactersParams>({
             query: (params) => {
-                console.log('params');
-                console.log(params);
                 const newParams = {
                     name: params.name,
                     page: params.page,

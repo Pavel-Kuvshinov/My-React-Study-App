@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 
 export default function Pagination(props: PaginationProps) {
     const { info } = props;
-    console.log(info);
     const router = useRouter();
     const { query } = router;
 

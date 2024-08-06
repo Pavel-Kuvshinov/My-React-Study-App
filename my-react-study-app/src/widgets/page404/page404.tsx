@@ -1,9 +1,8 @@
 import styles from './page404.module.css';
-// import { useTheme } from '../../shared/context/themeMode';
+import { useTheme } from '../../shared/context/themeMode';
 
 export default function NotFoundPage(): JSX.Element {
-    // const { isDark } = useTheme();
-    const isDark = true;
+    const { isDark } = useTheme();
     return (
         <main className={isDark ? `${styles.notFound} ${styles.dark}` : `${styles.notFound} ${styles.light}`}>
             <div className={styles.notFound__wrapper}>

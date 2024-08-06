@@ -3,37 +3,33 @@ import styles from './detailedItem.module.css';
 import { useEffect } from 'react';
 import { itemsSlice } from '../../shared/store/itemsSlice';
 import { useAppDispatch, useAppSelector } from '../../shared/store/store';
-import { itemsApi } from '../../shared/api/itemsApi';
 import Loader from '../loader/loader';
 import { useTheme } from '../../shared/context/themeMode';
+import { ElementRequest } from '../../shared/types';
+import { useRouter } from 'next/router';
 
-export default function DetailedItem() {
+export interface DetailedItemProps {
+    section: string;
+    dataItem: ElementRequest | undefined;
+}
+
+export default function DetailedItem({ dataItem, section }: DetailedItemProps) {
     const { isDark } = useTheme();
-    const { currentId, section, loadingCard } = useAppSelector((state) => state.items);
-    const { setCurrentId, setLoadingCard } = itemsSlice.actions;
-    const detailedItemParams = {
-        section,
-        id: currentId,
-    };
+    const { loadingCard } = useAppSelector((state) => state.items);
+    const { setLoadingCard } = itemsSlice.actions;
+    const router = useRouter();
     const dispatch = useAppDispatch();
-    const { data } = itemsApi.useGetItemQuery(detailedItemParams);
 
+    console.log('dataItem');
+    console.log(dataItem);
     useEffect(() => {
-        if (data) {
+        if (dataItem) {
             dispatch(setLoadingCard(false));
         }
-    }, [data]);
+    }, [dataItem]);
 
     return (
-        <div
-            className={styles.main__detailed_section}
-            onClick={(e) => {
-                const elem = e.target as HTMLElement;
-                if (elem.classList.contains('main__detailed_section')) dispatch(setCurrentId(null));
-                document.body.style.overflow = 'auto';
-                document.body.style.userSelect = 'auto';
-            }}
-        >
+        <div className={styles.main__detailed_section}>
             <div
                 className={
                     isDark
@@ -50,7 +46,16 @@ export default function DetailedItem() {
                             type="button"
                             className={styles.item_detailed__button_close}
                             onClick={() => {
-                                dispatch(setCurrentId(null));
+                                const query = router.query
+                                    ? Object.fromEntries(
+                                          Object.entries(router.query).filter(([key]) => key !== 'currentId')
+                                      )
+                                    : {};
+
+                                router.push({
+                                    pathname: router.pathname,
+                                    query,
+                                });
                                 document.body.style.overflow = 'auto';
                                 document.body.style.userSelect = 'auto';
                             }}
@@ -66,7 +71,7 @@ export default function DetailedItem() {
                                             : `${styles.item_detailed__text} ${styles.light}`
                                     }
                                 >
-                                    Location: <b>{data?.name}</b>
+                                    Location: <b>{dataItem?.name}</b>
                                 </p>
                                 <p
                                     className={
@@ -75,7 +80,7 @@ export default function DetailedItem() {
                                             : `${styles.item_detailed__text} ${styles.light}`
                                     }
                                 >
-                                    Type: <b>{data?.type}</b>
+                                    Type: <b>{dataItem?.type}</b>
                                 </p>
                                 <p
                                     className={
@@ -84,7 +89,7 @@ export default function DetailedItem() {
                                             : `${styles.item_detailed__text} ${styles.light}`
                                     }
                                 >
-                                    Dimension: <b>{data?.dimension}</b>
+                                    Dimension: <b>{dataItem?.dimension}</b>
                                 </p>
                                 <p
                                     className={
@@ -93,13 +98,13 @@ export default function DetailedItem() {
                                             : `${styles.item_detailed__text} ${styles.light}`
                                     }
                                 >
-                                    Total residets: <b>{data?.residents?.length}</b>
+                                    Total residets: <b>{dataItem?.residents?.length}</b>
                                 </p>
                             </div>
                         )}
                         {section.includes('character') && (
                             <div className={styles.item_detailed__wrapper}>
-                                <img className={styles.item_detailed__img} src={data?.image} alt={data?.name} />
+                                <img className={styles.item_detailed__img} src={dataItem?.image} alt={dataItem?.name} />
                                 <p
                                     className={
                                         isDark
@@ -107,7 +112,7 @@ export default function DetailedItem() {
                                             : `${styles.item_detailed__text} ${styles.light}`
                                     }
                                 >
-                                    Name: <b>{data?.name}</b>
+                                    Name: <b>{dataItem?.name}</b>
                                 </p>
                                 <p
                                     className={
@@ -116,7 +121,7 @@ export default function DetailedItem() {
                                             : `${styles.item_detailed__text} ${styles.light}`
                                     }
                                 >
-                                    Status: <b>{data?.status}</b>
+                                    Status: <b>{dataItem?.status}</b>
                                 </p>
                                 <p
                                     className={
@@ -125,7 +130,7 @@ export default function DetailedItem() {
                                             : `${styles.item_detailed__text} ${styles.light}`
                                     }
                                 >
-                                    Species: <b>{data?.species}</b>
+                                    Species: <b>{dataItem?.species}</b>
                                 </p>
                                 <p
                                     className={
@@ -134,7 +139,7 @@ export default function DetailedItem() {
                                             : `${styles.item_detailed__text} ${styles.light}`
                                     }
                                 >
-                                    Type: <b>{data?.type}</b>
+                                    Type: <b>{dataItem?.type}</b>
                                 </p>
                                 <p
                                     className={
@@ -143,7 +148,7 @@ export default function DetailedItem() {
                                             : `${styles.item_detailed__text} ${styles.light}`
                                     }
                                 >
-                                    Hender: <b>{data?.gender}</b>
+                                    Hender: <b>{dataItem?.gender}</b>
                                 </p>
                                 <p
                                     className={
@@ -152,7 +157,7 @@ export default function DetailedItem() {
                                             : `${styles.item_detailed__text} ${styles.light}`
                                     }
                                 >
-                                    Total episodes: <b>{data?.episode?.length}</b>
+                                    Total episodes: <b>{dataItem?.episode?.length}</b>
                                 </p>
                             </div>
                         )}
@@ -165,7 +170,7 @@ export default function DetailedItem() {
                                             : `${styles.item_detailed__text} ${styles.light}`
                                     }
                                 >
-                                    Episode: <b>{data?.name}</b>
+                                    Episode: <b>{dataItem?.name}</b>
                                 </p>
                                 <p
                                     className={
@@ -174,7 +179,7 @@ export default function DetailedItem() {
                                             : `${styles.item_detailed__text} ${styles.light}`
                                     }
                                 >
-                                    Date: <b>{data?.air_date}</b>
+                                    Date: <b>{dataItem?.air_date}</b>
                                 </p>
                                 <p
                                     className={
@@ -183,7 +188,7 @@ export default function DetailedItem() {
                                             : `${styles.item_detailed__text} ${styles.light}`
                                     }
                                 >
-                                    Code: <b>{data?.episode}</b>
+                                    Code: <b>{dataItem?.episode}</b>
                                 </p>
                                 <p
                                     className={
@@ -192,7 +197,7 @@ export default function DetailedItem() {
                                             : `${styles.item_detailed__text} ${styles.light}`
                                     }
                                 >
-                                    Total characters: <b>{data?.characters?.length}</b>
+                                    Total characters: <b>{dataItem?.characters?.length}</b>
                                 </p>
                             </div>
                         )}

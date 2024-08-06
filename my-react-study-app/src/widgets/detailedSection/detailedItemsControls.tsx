@@ -1,9 +1,10 @@
-// import { CSVLink } from 'react-csv';
+import { CSVLink } from 'react-csv';
 import styles from './detailedItemsControls.module.css';
 
 import { itemsSelectedSlice } from '../../shared/store/selectedItemsSlice';
 import { useAppDispatch, useAppSelector } from '../../shared/store/store';
 import { useTheme } from '../../shared/context/themeMode';
+import { ElementRequest } from '../../shared/types';
 
 export default function DetailedItemsControls() {
     const { isDark } = useTheme();
@@ -31,7 +32,7 @@ export default function DetailedItemsControls() {
     ];
 
     const csvReport = {
-        data: selectedItems,
+        data: selectedItems as ElementRequest[],
         headers,
         filename: `${selectedItems?.length}_selectedItems.csv`,
     };
@@ -64,7 +65,7 @@ export default function DetailedItemsControls() {
             >
                 Unselect all
             </button>
-            <button
+            <CSVLink
                 className={
                     isDark
                         ? `${styles.detailed_items_controls__button} ${styles.dark}`
@@ -73,7 +74,7 @@ export default function DetailedItemsControls() {
                 {...csvReport}
             >
                 Download csv
-            </button>
+            </CSVLink>
         </div>
     );
 }

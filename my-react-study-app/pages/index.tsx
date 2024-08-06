@@ -1,12 +1,5 @@
 import React from 'react';
 import Header from '../src/widgets/header/header';
-
-// import { useAppDispatch, useAppSelector, wrapper } from '../src/shared/store/store';
-// import { useEffect } from 'react';
-// import ErrorSection from '../src/widgets/errorSection/errorSection';
-// import Loader from '../src/widgets/loader/loader';
-// import { itemsSlice } from '../src/shared/store/itemsSlice';
-
 import { wrapper } from '../src/shared/store/store';
 import ItemsSection from '../src/widgets/itemsSection/itemsSection';
 import StartSection from '../src/widgets/startSection/startSection';
@@ -17,56 +10,20 @@ import { GetServerSideProps } from 'next';
 export interface MainPageProps {
     itemsData: ApiRequest;
     section: string;
+    id: number;
     itemData: ElementRequest;
 }
 
-export default function HomePage({ itemsData, section, itemData }: MainPageProps): JSX.Element {
-    console.log('itemsData');
-    console.log(itemsData);
-    // console.log('section');
-    // console.log(section);
-    // const { loading, error } = useAppSelector((state) => state.items);
-    // const { setLoading } = itemsSlice.actions;
-    // const dispatch = useAppDispatch();
-
-    // useEffect(() => {
-    //     if (error) throw new Error('I crashed!');
-    // }, [error]);
-
-    // useEffect(() => {
-    //     if (itemsData) {
-    //         dispatch(setLoading(false));
-    //     }
-    // }, [itemsData]);
+export default function HomePage({ itemsData, section, id, itemData }: MainPageProps): JSX.Element {
     return (
         <>
             <Header section={section} />
-            {section === '' ? <StartSection /> : <ItemsSection data={itemsData} dataItem={itemData} />}
+            {section === '' ? (
+                <StartSection />
+            ) : (
+                <ItemsSection data={itemsData} section={section} idItem={id} dataItem={itemData} />
+            )}
         </>
-        // <>
-        //     <Header />
-        //     {error === true ? (
-        //         <ErrorSection />
-        //     ) : section === '' ? (
-        //         <StartSection />
-        //     ) : loading === true ? (
-        //         <Loader />
-        //     ) : (
-        //         <ItemsSection data={data} />
-        //     )}
-        // </>
-        // <>
-        // <Header />
-        // {error === true ? (
-        //     <ErrorSection />
-        // ) : loading === true ? (
-        //     <Loader />
-        // ) : section === '' ? (
-        //     <StartSection />
-        // ) : (
-        //     <ItemsSection data={data} />
-        // )}
-        // </>
     );
 }
 
@@ -79,12 +36,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 
     const { data: itemsData } = await store.dispatch(itemsApi.endpoints.getItems.initiate({ section, name, page }));
 
-    let itemData: ElementRequest = {
-        id: 0,
-        name: '',
-        url: '',
-        created: '',
-    };
+    let itemData: ElementRequest | null = null;
 
     if (id) {
         const { data } = await store.dispatch(itemsApi.endpoints.getItem.initiate({ section, id }));
@@ -97,6 +49,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
         props: {
             itemsData,
             section,
+            id,
             itemData,
         },
     };

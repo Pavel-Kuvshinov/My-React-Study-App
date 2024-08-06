@@ -1,24 +1,28 @@
 import styles from './itemsSection.module.css';
-// import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../shared/store/store';
 import { ElementRequest, ItemsSectionProps } from '../../shared/types';
 import Pagination from '../pagination/pagination';
-// import Loader from '../loader/loader';
-import { itemsSlice } from '../../shared/store/itemsSlice';
 import DetailedItem from '../detailedItem/detailedItem';
 import { itemsSelectedSlice } from '../../shared/store/selectedItemsSlice';
 import DetailedItemsControls from '../detailedSection/detailedItemsControls';
 import { useTheme } from '../../shared/context/themeMode';
+import { useRouter } from 'next/router';
 
 export default function ItemsSection(props: ItemsSectionProps) {
     const { isDark } = useTheme();
-    const { currentId, section, loading } = useAppSelector((state) => state.items);
     const { selectedItems } = useAppSelector((state) => state.itemsSelected);
     const { setSelectedItems, unsetSelectedItems } = itemsSelectedSlice.actions;
-    const { setLoading, setCurrentId } = itemsSlice.actions;
     const dispatch = useAppDispatch();
-    const { data, dataItem } = props;
-    // console.log(dataItem);
+    const { data, section, idItem, dataItem } = props;
+    const router = useRouter();
+    const { query } = router;
+
+    const updateQueryParams = (id: number) => {
+        router.push({
+            pathname: router.pathname,
+            query: { ...query, currentId: id },
+        });
+    };
 
     return (
         <>
@@ -65,13 +69,10 @@ export default function ItemsSection(props: ItemsSectionProps) {
                                                             ? `constant-class ${styles.main__item_button} ${styles.dark}`
                                                             : `constant-class ${styles.main__item_button} ${styles.light}`
                                                     }
-                                                    onClick={(e) => {
-                                                        const targetElem = e.target as HTMLElement;
-                                                        if (!targetElem.classList.contains('main__item_checkbox')) {
-                                                            dispatch(setCurrentId(currentItem.id));
-                                                            document.body.style.overflow = 'hidden';
-                                                            document.body.style.userSelect = 'none';
-                                                        }
+                                                    onClick={() => {
+                                                        updateQueryParams(currentItem.id);
+                                                        document.body.style.overflow = 'hidden';
+                                                        document.body.style.userSelect = 'none';
                                                     }}
                                                 >
                                                     Detail
@@ -83,7 +84,7 @@ export default function ItemsSection(props: ItemsSectionProps) {
                             </div>
                             {selectedItems!.length > 0 ? <DetailedItemsControls /> : <></>}
                         </div>
-                        {currentId === null ? <></> : <DetailedItem />}
+                        {idItem === null ? <></> : <DetailedItem dataItem={dataItem} section={section} />}
                     </div>
                 </div>
             </main>

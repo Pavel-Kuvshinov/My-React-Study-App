@@ -1,13 +1,10 @@
 import styles from './header.module.css';
-
 import { useTheme } from '../../shared/context/themeMode';
 import SearchForm from '../searchForm/searchFrom';
 import { useRouter } from 'next/router';
 import Brightness from '../../../src/shared/assets/brightness.svg';
 import Moon from '../../shared/assets/moon.svg';
 
-// import { useAppDispatch } from '../../shared/store/store';
-// import { itemsSlice } from '../../shared/store/itemsSlice';
 export interface HeaderProps {
     section: string;
 }
@@ -15,9 +12,6 @@ export interface HeaderProps {
 export default function Header({ section }: HeaderProps) {
     const router = useRouter();
     const { isDark, toggleTheme } = useTheme();
-    // const { setStartСondition } = itemsSlice.actions;
-    // const { setStartСondition, setError } = itemsSlice.actions;
-    // const dispatch = useAppDispatch();
 
     return (
         <header className={isDark ? `${styles.header} ${styles.dark}` : `${styles.header} ${styles.light}`}>

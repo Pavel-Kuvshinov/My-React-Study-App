@@ -1,14 +1,9 @@
 import styles from './startSection.module.css';
 import { useTheme } from '../../shared/context/themeMode';
 import { useRouter } from 'next/router';
-// import { useAppDispatch } from '../../shared/store/store';
-// import { itemsSlice } from '../../shared/store/itemsSlice';
 
 export default function StartSection() {
     const { isDark } = useTheme();
-    // const { setSection } = itemsSlice.actions;
-    // const dispatch = useAppDispatch();
-
     const router = useRouter();
     const { query } = router;
 
