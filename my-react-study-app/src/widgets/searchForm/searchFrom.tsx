@@ -1,8 +1,9 @@
 import styles from './searchForm.module.css';
 
-import { useAppDispatch } from '../../shared/store/store';
-import { itemsSlice } from '../../shared/store/itemsSlice';
+// import { useAppDispatch } from '../../shared/store/store';
+// import { itemsSlice } from '../../shared/store/itemsSlice';
 import { useTheme } from '../../shared/context/themeMode';
+import { useRouter } from 'next/router';
 
 export interface SearchFormProps {
     section: string;
@@ -10,17 +11,27 @@ export interface SearchFormProps {
 
 export default function SearchForm({ section }: SearchFormProps) {
     const { isDark } = useTheme();
-    const { setCurrentRequest, setCurrentPage, setCurrentId } = itemsSlice.actions;
-    const dispatch = useAppDispatch();
+    const router = useRouter();
+    const { query } = router;
+    // const { setCurrentRequest, setCurrentPage, setCurrentId } = itemsSlice.actions;
+    // const dispatch = useAppDispatch();
+
+    const updateQueryParams = (currentQuery: string) => {
+        router.push({
+            pathname: router.pathname,
+            query: { ...query, currentPage: 1, currentRequest: currentQuery },
+        });
+    };
 
     const onSubmitClick = (event: React.FormEvent) => {
         event.preventDefault();
         const form = event.target as HTMLFormElement;
         const data = new FormData(form);
-        const query = (data.get('searchQuery') as string).trim() || '';
-        dispatch(setCurrentRequest(query));
-        dispatch(setCurrentPage(1));
-        dispatch(setCurrentId(null));
+        const currentQuery = (data.get('searchQuery') as string).trim() || '';
+        updateQueryParams(currentQuery);
+        // dispatch(setCurrentRequest(query));
+        // dispatch(setCurrentPage(1));
+        // dispatch(setCurrentId(null));
     };
 
     return (
