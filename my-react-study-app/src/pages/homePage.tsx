@@ -2,12 +2,10 @@
 
 import React from 'react';
 import Header from '../widgets/header/header';
-import { makeStore, store, wrapper } from '../shared/store/store';
+import { store } from '../shared/store/store';
 import ItemsSection from '../widgets/itemsSection/itemsSection';
 import StartSection from '../widgets/startSection/startSection';
 import { ApiRequest, ElementRequest } from '../shared/types';
-import { itemsApi } from '../shared/api/itemsApi';
-import { GetServerSideProps } from 'next';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from '../shared/context/themeMode';
 
@@ -19,11 +17,6 @@ export interface MainPageProps {
 }
 
 export default function HomePage({ itemsData, section, id, itemData }: MainPageProps): JSX.Element {
-    console.log('section');
-    console.log(section);
-    console.log('itemsData');
-    console.log(itemsData);
-
     return (
         <Provider store={store}>
             <ThemeProvider>
