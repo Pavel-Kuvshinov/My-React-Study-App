@@ -5,18 +5,27 @@ import { itemsSlice } from '../../shared/store/itemsSlice';
 import { useAppDispatch } from '../../shared/store/store';
 import { useTheme } from '../../shared/context/themeMode';
 import { ElementRequest } from '../../shared/types';
-import { useRouter } from 'next/router';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export interface DetailedItemProps {
-    section: string;
     dataItem: ElementRequest | undefined;
 }
 
-export default function DetailedItem({ dataItem, section }: DetailedItemProps) {
+export default function DetailedItem({ dataItem }: DetailedItemProps) {
     const { isDark } = useTheme();
     const { setLoadingCard } = itemsSlice.actions;
-    const router = useRouter();
     const dispatch = useAppDispatch();
+
+    const pathname = usePathname();
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const section = searchParams?.get('section');
+    const name = searchParams?.get('name') || '';
+    const page = searchParams?.get('page') || '';
+
+    const updateQueryParams = () => {
+        router.push(`${pathname}?section=${section}&page=${page}&name=${name}`);
+    };
 
     useEffect(() => {
         if (dataItem) {
@@ -39,23 +48,14 @@ export default function DetailedItem({ dataItem, section }: DetailedItemProps) {
                         type="button"
                         className={styles.item_detailed__button_close}
                         onClick={() => {
-                            const query = router.query
-                                ? Object.fromEntries(
-                                      Object.entries(router.query).filter(([key]) => key !== 'currentId')
-                                  )
-                                : {};
-
-                            router.push({
-                                pathname: router.pathname,
-                                query,
-                            });
+                            updateQueryParams();
                             document.body.style.overflow = 'auto';
                             document.body.style.userSelect = 'auto';
                         }}
                     >
                         &times;
                     </button>
-                    {section.includes('location') && (
+                    {section === 'location' && (
                         <div className={styles.item_detailed__wrapper}>
                             <p
                                 className={
@@ -95,7 +95,7 @@ export default function DetailedItem({ dataItem, section }: DetailedItemProps) {
                             </p>
                         </div>
                     )}
-                    {section.includes('character') && (
+                    {section === 'character' && (
                         <div className={styles.item_detailed__wrapper}>
                             <img className={styles.item_detailed__img} src={dataItem?.image} alt={dataItem?.name} />
                             <p
@@ -154,7 +154,7 @@ export default function DetailedItem({ dataItem, section }: DetailedItemProps) {
                             </p>
                         </div>
                     )}
-                    {section.includes('episode') && (
+                    {section === 'episode' && (
                         <div className={styles.item_detailed__wrapper}>
                             <p
                                 className={

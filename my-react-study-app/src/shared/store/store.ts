@@ -1,27 +1,24 @@
-import { useDispatch, useSelector, useStore } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
+import { TypedUseSelectorHook, useDispatch as dispatchHook, useSelector as selectorHook } from 'react-redux';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import itemsReducer from './itemsSlice';
 import itemsSelectedReducer from './selectedItemsSlice';
 import { itemsApi } from '../api/itemsApi';
-import { createWrapper } from 'next-redux-wrapper';
 
-export function makeStore() {
-    return configureStore({
-        reducer: {
-            items: itemsReducer,
-            itemsSelected: itemsSelectedReducer,
-            [itemsApi.reducerPath]: itemsApi.reducer,
-        },
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(itemsApi.middleware),
-    });
-}
+const rootReducer = combineReducers({
+    items: itemsReducer,
+    itemsSelected: itemsSelectedReducer,
+    [itemsApi.reducerPath]: itemsApi.reducer,
+});
 
-export type AppStore = ReturnType<typeof makeStore>;
-export type AppDispatch = AppStore['dispatch'];
-export type RootState = ReturnType<AppStore['getState']>;
+export const store = configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(itemsApi.middleware),
+});
 
-export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
-export const useAppSelector = useSelector.withTypes<RootState>();
-export const useAppStore = useStore.withTypes<AppStore>();
+export type RootState = ReturnType<typeof rootReducer>;
+// export type AppStore = ReturnType<typeof store>;
+// export type AppDispatch = AppStore['dispatch'];
+export type AppDispatch = typeof store.dispatch;
 
-export const wrapper = createWrapper(makeStore);
+export const useAppDispatch = () => dispatchHook<AppDispatch>();
+export const useAppSelector: TypedUseSelectorHook<RootState> = selectorHook;

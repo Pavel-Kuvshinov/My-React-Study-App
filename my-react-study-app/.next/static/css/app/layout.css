@@ -1,0 +1,80 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/shared/styles/index.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
+:root {
+    --deep-blue: #18313f;
+    --beige: #ece7e3;
+    --electric-orange: #ff6546;
+    --turquoise: #20768c;
+    --white: #fff;
+    --ink-light: #4c626f;
+    --egg-yolk: #fff8b7;
+    --smoke-grey: #f8f8f8;
+    --border-gray: #d8d8d8;
+    --font-family: 'Satoshi', sans-serif;
+    --second-family: 'Clash Display', sans-serif;
+}
+
+@font-face {
+    font-family: 'Clash Display';
+    src: url(/_next/static/media/ClashDisplaySemibold.a69f8631.otf) format('opentype');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Clash Display';
+    src: url(/_next/static/media/ClashDisplayMedium.e95bbbba.otf) format('opentype');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src:
+        url(/_next/static/media/Satoshi-Medium.6c3b16f6.otf) format('opentype'),
+        url(/_next/static/media/Satoshi-Medium.8217b72e.ttf) format('truetype'),
+        url(/_next/static/media/Satoshi-Medium.f3941e68.woff) format('woff'),
+        url(/_next/static/media/Satoshi-Medium.22539d17.woff2) format('woff2');
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 10px;
+    overflow-x: hidden;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--deep-blue);
+    height: 100%;
+    width: 100%;
+}
+
+#root {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+

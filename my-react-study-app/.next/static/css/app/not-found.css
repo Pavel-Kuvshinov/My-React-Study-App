@@ -1,0 +1,64 @@
+/*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./src/widgets/page404/page404.module.css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************/
+.page404_notFound__qwZfZ {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    &.page404_light__u2FtQ {
+        background-color: var(--beige);
+    }
+    &.page404_dark___iewD {
+        background-color: var(--deep-blue);
+    }
+}
+
+.page404_notFound__wrapper__45gfR {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.page404_notFound_title__4m3hp {
+    font-family: var(--font-family);
+    font-size: 3.6rem;
+    font-weight: 600;
+    &.page404_light__u2FtQ {
+        color: var(--deep-blue);
+    }
+    &.page404_dark___iewD {
+        color: var(--beige);
+    }
+}
+
+.page404_notFound-button__4yx3R {
+    background: var(--electric-orange);
+    padding: 10px 53.5px;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 1.8rem;
+    color: var(--white);
+    transition: all 0.5s;
+    &:hover {
+        background-color: var(--deep-blue);
+    }
+}
+
+.page404_notFound-text__gm8TC {
+    font-family: var(--second-family);
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 150%;
+    &.page404_light__u2FtQ {
+        color: var(--deep-blue);
+    }
+    &.page404_dark___iewD {
+        color: var(--beige);
+    }
+}
+

@@ -1,17 +1,14 @@
 import styles from './startSection.module.css';
 import { useTheme } from '../../shared/context/themeMode';
-import { useRouter } from 'next/router';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function StartSection() {
     const { isDark } = useTheme();
+    const pathname = usePathname();
     const router = useRouter();
-    const { query } = router;
 
     const updateQueryParams = (section: string) => {
-        router.push({
-            pathname: router.pathname,
-            query: { ...query, section: section },
-        });
+        router.push(`${pathname}?section=${section}&page=1`);
     };
 
     return (

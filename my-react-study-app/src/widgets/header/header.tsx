@@ -1,7 +1,8 @@
 import styles from './header.module.css';
 import { useTheme } from '../../shared/context/themeMode';
 import SearchForm from '../searchForm/searchFrom';
-import { useRouter } from 'next/router';
+import { usePathname, useRouter } from 'next/navigation';
+
 // import Brightness from '../../../src/shared/assets/brightness.svg';
 // import Moon from '../../../src/shared/assets/moon.svg';
 
@@ -10,6 +11,7 @@ export interface HeaderProps {
 }
 
 export default function Header({ section }: HeaderProps) {
+    const pathname = usePathname();
     const router = useRouter();
     const { isDark, toggleTheme } = useTheme();
 
@@ -19,12 +21,8 @@ export default function Header({ section }: HeaderProps) {
                 type="button"
                 className={isDark ? `${styles.header__logo} ${styles.dark}` : `${styles.header__logo} ${styles.light}`}
                 onClick={() => {
-                    const query = {};
-
-                    router.push({
-                        pathname: router.pathname,
-                        query,
-                    });
+                    console.log('click');
+                    router.push(`${pathname}`);
                 }}
             >
                 Rick and Morty
@@ -43,7 +41,10 @@ export default function Header({ section }: HeaderProps) {
                 className={
                     isDark ? `${styles.theme__button} ${styles.dark}` : `${styles.theme__button} ${styles.light}`
                 }
-                onClick={toggleTheme}
+                onClick={() => {
+                    toggleTheme();
+                    document.body.classList.toggle('isDark');
+                }}
             >
                 {/* {isDark ? (
                     <Brightness className={styles.theme__button_icon} />

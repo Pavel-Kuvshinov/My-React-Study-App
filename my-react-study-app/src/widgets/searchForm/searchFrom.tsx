@@ -1,6 +1,6 @@
 import styles from './searchForm.module.css';
 import { useTheme } from '../../shared/context/themeMode';
-import { useRouter } from 'next/router';
+import { usePathname, useRouter } from 'next/navigation';
 
 export interface SearchFormProps {
     section: string;
@@ -8,14 +8,13 @@ export interface SearchFormProps {
 
 export default function SearchForm({ section }: SearchFormProps) {
     const { isDark } = useTheme();
+    // const router = useRouter();
+    // const { query } = router;
+    const pathname = usePathname();
     const router = useRouter();
-    const { query } = router;
 
-    const updateQueryParams = (currentQuery: string) => {
-        router.push({
-            pathname: router.pathname,
-            query: { ...query, currentPage: 1, currentRequest: currentQuery },
-        });
+    const updateQueryParams = (name: string) => {
+        router.push(`${pathname}?section=${section}&page=1&name=${name}`);
     };
 
     const onSubmitClick = (event: React.FormEvent) => {
@@ -29,7 +28,11 @@ export default function SearchForm({ section }: SearchFormProps) {
     return (
         <form
             data-testid="search-form"
-            className={section !== '' ? `${styles.search_form}` : `${styles.search_form} ${styles.hide}`}
+            className={
+                section === '' || section === undefined
+                    ? `${styles.search_form} ${styles.hide}`
+                    : `${styles.search_form}`
+            }
             onSubmit={onSubmitClick}
         >
             <input className={styles.search_form__input} name="searchQuery" placeholder="search..." />

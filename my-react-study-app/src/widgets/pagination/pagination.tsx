@@ -1,30 +1,25 @@
 import { PaginationProps } from '../../shared/types';
 import styles from './pagination.module.css';
-import { useRouter } from 'next/router';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export default function Pagination(props: PaginationProps) {
     const { info } = props;
+    const pathname = usePathname();
     const router = useRouter();
-    const { query } = router;
+    const searchParams = useSearchParams();
+    const section = searchParams?.get('section');
+    const name = searchParams?.get('name') || '';
 
     const updateQueryParams = (page: number) => {
-        router.push({
-            pathname: router.pathname,
-            query: { ...query, currentPage: page },
-        });
+        router.push(`${pathname}?section=${section}&page=${page}&name=${name}`);
     };
 
-    console.log('router');
-    console.log(router);
-    console.log('query');
-    console.log(query);
-
-    let pageNumber = 0;
-    if (info.next !== null) {
-        pageNumber = Number(info.next!.match(/\d+/g)) - 1;
-    } else {
-        pageNumber = Number(info.prev!.match(/\d+/g)) + 1;
-    }
+    const pageNumber = Number(searchParams?.get('page')) || 1;
+    // if (info.next !== null) {
+    //     pageNumber = Number(info.next!.match(/\d+/g)) - 1;
+    // } else {
+    //     pageNumber = Number(info.prev!.match(/\d+/g)) + 1;
+    // }
 
     return (
         <div className={styles.main__pagination}>
@@ -46,7 +41,6 @@ export default function Pagination(props: PaginationProps) {
                 className={styles.pagination__button}
                 disabled={info.next === null}
                 onClick={() => {
-                    console.log(pageNumber + 1);
                     updateQueryParams(pageNumber + 1);
                 }}
             >
