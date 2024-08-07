@@ -41,10 +41,7 @@ export default function Header({ section }: HeaderProps) {
                 className={
                     isDark ? `${styles.theme__button} ${styles.dark}` : `${styles.theme__button} ${styles.light}`
                 }
-                onClick={() => {
-                    toggleTheme();
-                    document.body.classList.toggle('isDark');
-                }}
+                onClick={toggleTheme}
             >
                 {/* {isDark ? (
                     <Brightness className={styles.theme__button_icon} />

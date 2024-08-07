@@ -15,11 +15,6 @@ export default function Pagination(props: PaginationProps) {
     };
 
     const pageNumber = Number(searchParams?.get('page')) || 1;
-    // if (info.next !== null) {
-    //     pageNumber = Number(info.next!.match(/\d+/g)) - 1;
-    // } else {
-    //     pageNumber = Number(info.prev!.match(/\d+/g)) + 1;
-    // }
 
     return (
         <div className={styles.main__pagination}>

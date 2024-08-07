@@ -8,8 +8,6 @@ export interface SearchFormProps {
 
 export default function SearchForm({ section }: SearchFormProps) {
     const { isDark } = useTheme();
-    // const router = useRouter();
-    // const { query } = router;
     const pathname = usePathname();
     const router = useRouter();
 

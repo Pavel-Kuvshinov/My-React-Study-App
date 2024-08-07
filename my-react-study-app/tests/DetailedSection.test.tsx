@@ -2,14 +2,14 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { Provider } from 'react-redux';
 import DetailedItemsControls from '../src/widgets/detailedSection/detailedItemsControls';
-import { makeStore } from '../src/shared/store/store';
+import { store } from '../src/shared/store/store';
 import { ThemeProvider } from '../src/shared/context/themeMode';
 import * as storeHooks from '../src/shared/store/store';
 
 describe('Header', () => {
     it('Here should be detailed section', () => {
         render(
-            <Provider store={makeStore()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <DetailedItemsControls />
                 </ThemeProvider>
@@ -23,7 +23,7 @@ describe('Header', () => {
 
     it('should have a download link with correct href', async () => {
         render(
-            <Provider store={makeStore()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <DetailedItemsControls />
                 </ThemeProvider>
@@ -37,7 +37,7 @@ describe('Header', () => {
     it('Click on the unselect all button unselects all items', () => {
         const func = vi.spyOn(storeHooks, 'useAppDispatch');
         render(
-            <Provider store={makeStore()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <DetailedItemsControls />
                 </ThemeProvider>

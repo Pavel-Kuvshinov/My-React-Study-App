@@ -76,8 +76,6 @@ export default function ItemsSection(props: ItemsSectionProps) {
                                                             }
                                                             onClick={() => {
                                                                 updateQueryParams(currentItem.id);
-                                                                document.body.style.overflow = 'hidden';
-                                                                document.body.style.userSelect = 'none';
                                                             }}
                                                         >
                                                             Detail

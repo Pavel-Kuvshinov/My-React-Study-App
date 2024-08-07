@@ -10,7 +10,7 @@ export default defineConfig({
         coverage: {
             provider: 'v8',
             reporter: ['text'],
-            include: ['src', 'pages'],
+            include: ['src', 'app'],
             // exclude: [
             //     '**/.eslintrc.cjs',
             //     'vitest.config.ts',

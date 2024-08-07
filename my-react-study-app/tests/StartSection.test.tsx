@@ -1,24 +1,24 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { afterAll, afterEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { Provider } from 'react-redux';
 import StartSection from '../src/widgets/startSection/startSection';
-import { makeStore } from '../src/shared/store/store';
+import { store } from '../src/shared/store/store';
 import { ThemeProvider } from '../src/shared/context/themeMode';
 import mockRouter from 'next-router-mock';
 
-vi.mock('next/router', () => vi.importActual('next-router-mock'));
+const useRouterPushMock = vi.fn();
+
+vi.mock('next/navigation', () => ({
+    useRouter: () => ({
+        push: useRouterPushMock,
+    }),
+    usePathname: () => '/',
+}));
 
 describe('Start section', () => {
-    afterEach(() => {
-        vi.clearAllMocks();
-    });
-
-    afterAll(() => {
-        vi.restoreAllMocks();
-    });
     it('Here should be start section', () => {
         render(
-            <Provider store={makeStore()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <StartSection />
                 </ThemeProvider>
@@ -29,7 +29,7 @@ describe('Start section', () => {
     it('Clicking the start item button saves the section name to the storage', async () => {
         mockRouter.push('character');
         render(
-            <Provider store={makeStore()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <StartSection />
                 </ThemeProvider>
@@ -37,21 +37,15 @@ describe('Start section', () => {
         );
 
         const characterButton = screen.getByRole('button', { name: 'character' });
-        await fireEvent.click(characterButton);
-        expect(mockRouter).toMatchObject({
-            query: { section: 'character' },
-        });
+        fireEvent.click(characterButton);
+        expect(useRouterPushMock).toHaveBeenCalledWith(expect.stringContaining('?section=character'));
 
         const episodeButton = screen.getByRole('button', { name: 'episode' });
-        await fireEvent.click(episodeButton);
-        expect(mockRouter).toMatchObject({
-            query: { section: 'episode' },
-        });
+        fireEvent.click(episodeButton);
+        expect(useRouterPushMock).toHaveBeenCalledWith(expect.stringContaining('?section=episode'));
 
         const locationButton = screen.getByRole('button', { name: 'location' });
-        await fireEvent.click(locationButton);
-        expect(mockRouter).toMatchObject({
-            query: { section: 'location' },
-        });
+        fireEvent.click(locationButton);
+        expect(useRouterPushMock).toHaveBeenCalledWith(expect.stringContaining('?section=location'));
     });
 });

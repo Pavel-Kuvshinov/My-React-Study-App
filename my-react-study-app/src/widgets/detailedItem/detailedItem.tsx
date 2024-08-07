@@ -47,11 +47,7 @@ export default function DetailedItem({ dataItem }: DetailedItemProps) {
                         data-testid="button-close-detailed"
                         type="button"
                         className={styles.item_detailed__button_close}
-                        onClick={() => {
-                            updateQueryParams();
-                            document.body.style.overflow = 'auto';
-                            document.body.style.userSelect = 'auto';
-                        }}
+                        onClick={updateQueryParams}
                     >
                         &times;
                     </button>

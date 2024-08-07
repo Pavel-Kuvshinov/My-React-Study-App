@@ -1,24 +1,27 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-import { afterAll, afterEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import Pagination from '../src/widgets/pagination/pagination';
 import { mockCharactersData } from '../src/shared/mocks/mockedData/cards';
-import mockRouter from 'next-router-mock';
 
-vi.mock('next/router', () => vi.importActual('next-router-mock'));
+const useRouterPushMock = vi.fn();
+
+vi.mock('next/navigation', () => ({
+    useRouter: () => ({
+        push: useRouterPushMock,
+    }),
+    usePathname: () => '/',
+    useSearchParams: () => ({
+        get: (key: string) => {
+            const params = new URLSearchParams('?section=character');
+            return params.get(key);
+        },
+    }),
+}));
 
 describe('Pagination tests', () => {
-    afterEach(() => {
-        vi.clearAllMocks();
-    });
-
-    afterAll(() => {
-        vi.restoreAllMocks();
-    });
-
     it('Here should be pagination', () => {
         const { info } = mockCharactersData;
-        mockRouter.push('/?currentPage=3');
         render(
             <Pagination
                 info={{
@@ -33,7 +36,6 @@ describe('Pagination tests', () => {
 
     it('Pagination buttons click checked', () => {
         const { info } = mockCharactersData;
-        mockRouter.push('/?currentPage=3');
         render(
             <Pagination
                 info={{
@@ -47,13 +49,10 @@ describe('Pagination tests', () => {
 
         const nextPageBtn = screen.getByRole('button', { name: '›' });
         fireEvent.click(nextPageBtn);
-        expect(mockRouter).toMatchObject({
-            query: { currentPage: 3 },
-        });
+        expect(useRouterPushMock).toHaveBeenCalledWith(expect.stringContaining('?section=character&page=2&name='));
+
         const prevPageBtn = screen.getByRole('button', { name: '‹' });
         fireEvent.click(prevPageBtn);
-        expect(mockRouter).toMatchObject({
-            query: { currentPage: 1 },
-        });
+        expect(useRouterPushMock).toHaveBeenCalledWith(expect.stringContaining('?section=character&page=0&name='));
     });
 });

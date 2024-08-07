@@ -1,30 +1,27 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { afterAll, afterEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { Provider } from 'react-redux';
 import Header from '../src/widgets/header/header';
-import { makeStore } from '../src/shared/store/store';
+import { store } from '../src/shared/store/store';
 import { ThemeProvider } from '../src/shared/context/themeMode';
-import mockRouter from 'next-router-mock';
 import * as themeHook from '../src/shared/context/themeMode';
 
-vi.mock('next/router', () => vi.importActual('next-router-mock'));
+const useRouterPushMock = vi.fn();
+
+vi.mock('next/navigation', () => ({
+    useRouter: () => ({
+        push: useRouterPushMock,
+    }),
+    usePathname: () => '/',
+}));
 
 describe('Header', () => {
-    afterEach(() => {
-        vi.clearAllMocks();
-    });
-
-    afterAll(() => {
-        vi.restoreAllMocks();
-    });
-
     it('Here should be header', () => {
         const section = 'character';
-
         render(
-            <Provider store={makeStore()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <Header section={section} />
                 </ThemeProvider>
@@ -39,7 +36,7 @@ describe('Header', () => {
         const funcTheme = vi.spyOn(themeHook, 'useTheme');
         const section = 'character';
         render(
-            <Provider store={makeStore()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <Header section={section} />
                 </ThemeProvider>
@@ -52,10 +49,9 @@ describe('Header', () => {
     });
 
     it('Click on the logo goes to the start section', () => {
-        mockRouter.push({});
         const section = 'character';
         render(
-            <Provider store={makeStore()}>
+            <Provider store={store}>
                 <ThemeProvider>
                     <Header section={section} />
                 </ThemeProvider>
@@ -64,9 +60,6 @@ describe('Header', () => {
 
         const headerLogo = screen.getByRole('button', { name: 'Rick and Morty' });
         fireEvent.click(headerLogo);
-        // const queryReq = {};
-        expect(mockRouter).toMatchObject({
-            query: {},
-        });
+        expect(useRouterPushMock).toHaveBeenCalledWith(expect.stringContaining(''));
     });
 });
