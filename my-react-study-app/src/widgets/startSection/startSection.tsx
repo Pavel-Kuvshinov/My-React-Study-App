@@ -1,3 +1,4 @@
+import { Link } from '@remix-run/react';
 import { useAppDispatch } from '../../shared/store/store';
 import { itemsSlice } from '../../shared/store/itemsSlice';
 import './startSection.css';
@@ -11,10 +12,18 @@ export default function StartSection() {
     return (
         <main className={isDark ? 'main dark' : 'main'}>
             <div className="main__wrapper">
-                <div className="main__content">
-                    <div className="main__search_section">
-                        <div className="main__items">
-                            <button
+                <div className="start__content">
+                    <div className="start__items">
+                        <Link to="character" className={isDark ? 'start__item dark' : 'start__item light'}>
+                            character
+                        </Link>
+                        <Link to="episode" className={isDark ? 'start__item dark' : 'start__item light'}>
+                            episode
+                        </Link>
+                        <Link to="location" className={isDark ? 'start__item dark' : 'start__item light'}>
+                            location
+                        </Link>
+                        {/* <button
                                 type="button"
                                 className={isDark ? 'start__item dark' : 'start__item light'}
                                 onClick={() => dispatch(setSection('character'))}
@@ -34,8 +43,7 @@ export default function StartSection() {
                                 onClick={() => dispatch(setSection('location'))}
                             >
                                 location
-                            </button>
-                        </div>
+                            </button> */}
                     </div>
                 </div>
             </div>

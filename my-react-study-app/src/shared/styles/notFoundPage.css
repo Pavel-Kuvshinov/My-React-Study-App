@@ -22,7 +22,7 @@
 }
 
 .notFound-title {
-    font-family: var(--second-family);
+    font-family: var(--font-family);
     font-size: 3.6rem;
     font-weight: 600;
     &.light {
