@@ -43,7 +43,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
             dataItem = await fetchDataItem(section as string, idItem);
         }
     } catch (error) {
-        console.error(error);
+        throw new Error(`Error - ${error}`);
     }
 
     return { data, section, idItem, dataItem };

@@ -30,7 +30,6 @@ export const fetchDataItems = async (
     let baseUrl = `${API_BASE_URL}`;
 
     section === '' ? (baseUrl += `/${section}`) : (baseUrl += `/${section}/?page=${page}&name=${name}`);
-    console.log(baseUrl);
     try {
         const response = await fetch(baseUrl, { method: 'GET' });
         if (!response.ok) {
@@ -39,8 +38,7 @@ export const fetchDataItems = async (
         const data: ApiRequest = await response.json();
         return data;
     } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
+        throw new Error(`Error - ${error}`);
     }
 };
 
@@ -55,7 +53,6 @@ export const fetchDataItem = async (section: string, id: number = 1): Promise<El
         const data: ElementRequest = await response.json();
         return data;
     } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
+        throw new Error(`Error - ${error}`);
     }
 };
