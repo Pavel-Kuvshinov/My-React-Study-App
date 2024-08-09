@@ -23,7 +23,7 @@ export default function Character() {
     console.log(data.includes('character'));
     return (
         <>
-            <Header />
+            <Header section="character" />
             <p>Character</p>
         </>
     );

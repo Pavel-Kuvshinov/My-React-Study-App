@@ -48,6 +48,7 @@ module.exports = {
         'react/react-in-jsx-scope': 0,
         '@typescript-eslint/no-explicit-any': 2,
         '@typescript-eslint/no-unused-vars': 0,
+        '@typescript-eslint/no-unused-expressions': 0,
         'react/state-in-constructor': 0,
         'react/destructuring-assignment': 0,
         'react/prefer-stateless-function': 0,
