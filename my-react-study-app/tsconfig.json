@@ -27,6 +27,6 @@
           "@/*": ["./src/*"]
       }
   },
-  "include": [".eslintrc.cjs", "src", "tests", "./setupTests.ts"],
+  "include": [".eslintrc.cjs", "./app", "./src", "./tests", "./setupTests.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

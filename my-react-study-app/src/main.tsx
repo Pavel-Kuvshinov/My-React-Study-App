@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import { store } from './shared/store/store';
-import App from './app/app';
+import App from './old_app/app';
 import './main.css';
 import { ThemeProvider } from './shared/context/themeMode';
 
