@@ -10,11 +10,7 @@ import { itemsSlice } from '../../shared/store/itemsSlice';
 import brightness from '../../shared/assets/brightness-icon.svg';
 import moon from '../../shared/assets/moon-icon.svg';
 
-export interface HeaderProps {
-    section: string;
-}
-
-export default function Header({ section }: HeaderProps) {
+export default function Header() {
     const { isDark, toggleTheme } = useTheme();
     const { setStartСondition, setError } = itemsSlice.actions;
     const dispatch = useAppDispatch();
@@ -31,7 +27,7 @@ export default function Header({ section }: HeaderProps) {
             >
                 Test error
             </button> */}
-            <SearchForm section={section} />
+            <SearchForm />
             <button
                 data-testid="button-theme"
                 type="button"

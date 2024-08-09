@@ -60,6 +60,30 @@
     z-index: 1;
 }
 
+.main__item_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    height: 24px;
+    width: 60px;
+    transition: all 0.3s;
+    &.light {
+        background-color: var(--deep-blue);
+        color: var(--white);
+    }
+    &.light:hover {
+        background-color: var(--electric-orange);
+    }
+    &.dark {
+        background-color: var(--turquoise);
+        color: var(--white);
+    }
+    &.dark:hover {
+        background-color: var(--electric-orange);
+    }
+}
+
 .main__content {
     display: flex;
     flex-direction: row;

@@ -118,9 +118,12 @@ export interface PaginationProps {
 }
 
 export interface ItemsSectionProps {
-    data: ApiRequest | undefined;
+    data: ApiRequest;
+    section: string;
+    idItem: number | undefined | null;
+    dataItem: ElementRequest;
 }
 
 export interface DetailedItemProps {
-    data: ElementRequest | undefined;
+    data: ElementRequest;
 }

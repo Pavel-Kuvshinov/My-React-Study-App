@@ -5,8 +5,8 @@ import itemsSelectedReducer from './selectedItemsSlice';
 import { itemsApi } from '../api/itemsApi';
 
 const rootReducer = combineReducers({
-    itemsReducer,
-    itemsSelectedReducer,
+    items: itemsReducer,
+    itemsSelected: itemsSelectedReducer,
     [itemsApi.reducerPath]: itemsApi.reducer,
 });
 
@@ -14,14 +14,6 @@ export const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(itemsApi.middleware),
 });
-
-// export function store(preloadedState?: Partial<RootState>) {
-//     return configureStore({
-//         reducer: rootReducer,
-//         middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(itemsApi.middleware),
-//         preloadedState,
-//     });
-// }
 
 export type RootState = ReturnType<typeof rootReducer>;
 // export type AppStore = ReturnType<typeof store>;

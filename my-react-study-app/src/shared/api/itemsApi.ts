@@ -30,7 +30,7 @@ export const fetchDataItems = async (
     let baseUrl = `${API_BASE_URL}`;
 
     section === '' ? (baseUrl += `/${section}`) : (baseUrl += `/${section}/?page=${page}&name=${name}`);
-
+    console.log(baseUrl);
     try {
         const response = await fetch(baseUrl, { method: 'GET' });
         if (!response.ok) {

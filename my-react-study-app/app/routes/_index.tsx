@@ -16,7 +16,7 @@ export const links: LinksFunction = () => [{ rel: 'icon', type: 'image/svg+xml',
 export default function Index() {
     return (
         <>
-            <Header section="" />
+            <Header />
             <StartSection />
         </>
     );

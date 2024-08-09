@@ -1,3 +1,4 @@
+import { useLocation, useSearchParams } from '@remix-run/react';
 import './detailedItem.css';
 
 import { useEffect } from 'react';
@@ -6,108 +7,102 @@ import { useAppDispatch, useAppSelector } from '../../shared/store/store';
 import { itemsApi } from '../../shared/api/itemsApi';
 import Loader from '../loader/loader';
 import { useTheme } from '../../shared/context/themeMode';
+import { ElementRequest } from '../../shared/types';
 
-export default function DetailedItem() {
+export interface DetailedItemProps {
+    dataItem: ElementRequest | undefined;
+}
+
+export default function DetailedItem({ dataItem }: DetailedItemProps) {
     const { isDark } = useTheme();
-    const { currentId, section, loadingCard } = useAppSelector((state) => state.itemsReducer);
-    const { setCurrentId, setLoadingCard } = itemsSlice.actions;
-    const detailedItemParams = {
-        section,
-        id: currentId,
-    };
+    const { setLoadingCard } = itemsSlice.actions;
     const dispatch = useAppDispatch();
-    const { data } = itemsApi.useGetItemQuery(detailedItemParams);
+
+    const location = useLocation();
+    const section = location.pathname.replace('/', '');
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    const name = searchParams?.get('name') || '';
+    const page = searchParams?.get('page') || '';
+
+    const updateQueryParams = () => {
+        setSearchParams(`?page=${page}&name=${name}`);
+    };
 
     useEffect(() => {
-        if (data) {
+        if (dataItem) {
             dispatch(setLoadingCard(false));
         }
-    }, [data]);
+    }, [dataItem]);
 
     return (
-        <div
-            className="main__detailed_section"
-            onClick={(e) => {
-                const elem = e.target as HTMLElement;
-                if (elem.classList.contains('main__detailed_section')) dispatch(setCurrentId(null));
-                document.body.style.overflow = 'auto';
-                document.body.style.userSelect = 'auto';
-            }}
-        >
+        <div className="main__detailed_section">
             <div className={isDark ? 'item_detailed__cover dark' : 'item_detailed__cover light'}>
-                {loadingCard ? (
-                    <Loader />
-                ) : (
-                    <div className="item_detailed">
-                        <button
-                            data-testid="button-close-detailed"
-                            type="button"
-                            className="item_detailed__button-close"
-                            onClick={() => {
-                                dispatch(setCurrentId(null));
-                                document.body.style.overflow = 'auto';
-                                document.body.style.userSelect = 'auto';
-                            }}
-                        >
-                            &times;
-                        </button>
-                        {section.includes('location') && (
-                            <div className="item_detailed__wrapper">
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
-                                    Location: <b>{data?.name}</b>
-                                </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
-                                    Type: <b>{data?.type}</b>
-                                </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
-                                    Dimension: <b>{data?.dimension}</b>
-                                </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
-                                    Total residets: <b>{data?.residents?.length}</b>
-                                </p>
-                            </div>
-                        )}
-                        {section.includes('character') && (
-                            <div className="item_detailed__wrapper">
-                                <img className="item_detailed__img" src={data?.image} alt={data?.name} />
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
-                                    Name: <b>{data?.name}</b>
-                                </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
-                                    Status: <b>{data?.status}</b>
-                                </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
-                                    Species: <b>{data?.species}</b>
-                                </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
-                                    Type: <b>{data?.type}</b>
-                                </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
-                                    Hender: <b>{data?.gender}</b>
-                                </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
-                                    Total episodes: <b>{data?.episode?.length}</b>
-                                </p>
-                            </div>
-                        )}
-                        {section.includes('episode') && (
-                            <div className="item_detailed__wrapper">
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
-                                    Episode: <b>{data?.name}</b>
-                                </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
-                                    Date: <b>{data?.air_date}</b>
-                                </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
-                                    Code: <b>{data?.episode}</b>
-                                </p>
-                                <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
-                                    Total characters: <b>{data?.characters?.length}</b>
-                                </p>
-                            </div>
-                        )}
-                    </div>
-                )}
+                <div className="item_detailed">
+                    <button
+                        data-testid="button-close-detailed"
+                        type="button"
+                        className="item_detailed__button-close"
+                        onClick={updateQueryParams}
+                    >
+                        &times;
+                    </button>
+                    {section.includes('location') && (
+                        <div className="item_detailed__wrapper">
+                            <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                Location: <b>{dataItem?.name}</b>
+                            </p>
+                            <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                Type: <b>{dataItem?.type}</b>
+                            </p>
+                            <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                Dimension: <b>{dataItem?.dimension}</b>
+                            </p>
+                            <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                Total residets: <b>{dataItem?.residents?.length}</b>
+                            </p>
+                        </div>
+                    )}
+                    {section.includes('character') && (
+                        <div className="item_detailed__wrapper">
+                            <img className="item_detailed__img" src={dataItem?.image} alt={dataItem?.name} />
+                            <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                Name: <b>{dataItem?.name}</b>
+                            </p>
+                            <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                Status: <b>{dataItem?.status}</b>
+                            </p>
+                            <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                Species: <b>{dataItem?.species}</b>
+                            </p>
+                            <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                Type: <b>{dataItem?.type}</b>
+                            </p>
+                            <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                Hender: <b>{dataItem?.gender}</b>
+                            </p>
+                            <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                Total episodes: <b>{dataItem?.episode?.length}</b>
+                            </p>
+                        </div>
+                    )}
+                    {section.includes('episode') && (
+                        <div className="item_detailed__wrapper">
+                            <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                Episode: <b>{dataItem?.name}</b>
+                            </p>
+                            <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                Date: <b>{dataItem?.air_date}</b>
+                            </p>
+                            <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                Code: <b>{dataItem?.episode}</b>
+                            </p>
+                            <p className={isDark ? 'item_detailed__text dark' : 'item_detailed__text light'}>
+                                Total characters: <b>{dataItem?.characters?.length}</b>
+                            </p>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

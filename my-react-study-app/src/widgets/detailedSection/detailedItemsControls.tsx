@@ -3,10 +3,11 @@ import { itemsSelectedSlice } from '../../shared/store/selectedItemsSlice';
 import { useAppDispatch, useAppSelector } from '../../shared/store/store';
 import './detailedItemsControls.css';
 import { useTheme } from '../../shared/context/themeMode';
+import { ElementRequest } from '../../shared/types';
 
 export default function DetailedItemsControls() {
     const { isDark } = useTheme();
-    const { selectedItems } = useAppSelector((state) => state.itemsSelectedReducer);
+    const { selectedItems } = useAppSelector((state) => state.itemsSelected);
     const { unsetAllSelectedItems } = itemsSelectedSlice.actions;
     const dispatch = useAppDispatch();
 
@@ -30,7 +31,7 @@ export default function DetailedItemsControls() {
     ];
 
     const csvReport = {
-        data: selectedItems,
+        data: selectedItems as ElementRequest[],
         headers,
         filename: `${selectedItems?.length}_selectedItems.csv`,
     };

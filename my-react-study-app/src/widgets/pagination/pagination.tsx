@@ -1,23 +1,16 @@
-import { useAppDispatch, useAppSelector } from '@/shared/store/store';
-import { itemsApi } from '../../shared/api/itemsApi';
-import { itemsSlice } from '../../shared/store/itemsSlice';
-import { GetCharactersParams, PaginationProps } from '../../shared/types';
+import { useSearchParams } from '@remix-run/react';
+import { PaginationProps } from '../../shared/types';
 import './pagination.css';
 
 export default function Pagination(props: PaginationProps) {
     const { info } = props;
-    const { currentRequest, currentPage, currentId, section, loading } = useAppSelector((state) => state.itemsReducer);
-    const params: GetCharactersParams = { section, name: currentRequest, page: currentPage };
-    const { data } = itemsApi.useGetItemsQuery(params);
-    const { setCurrentPage } = itemsSlice.actions;
-    const dispatch = useAppDispatch();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const name = searchParams.get('name') || '';
+    const pageNumber = Number(searchParams.get('page')) || 1;
 
-    let pageNumber = 0;
-    if (info.next !== null) {
-        pageNumber = Number(info.next!.match(/\d+/g)) - 1;
-    } else {
-        pageNumber = Number(info.prev!.match(/\d+/g)) + 1;
-    }
+    const updateQueryParams = (page: number) => {
+        setSearchParams(`?page=${page}&name=${name}`);
+    };
 
     return (
         <div className="main__pagination">
@@ -26,7 +19,7 @@ export default function Pagination(props: PaginationProps) {
                 className="pagination__button"
                 disabled={info.prev === null}
                 onClick={() => {
-                    dispatch(setCurrentPage(pageNumber - 1));
+                    updateQueryParams(pageNumber - 1);
                 }}
             >
                 ‹
@@ -39,7 +32,7 @@ export default function Pagination(props: PaginationProps) {
                 className="pagination__button"
                 disabled={info.next === null}
                 onClick={() => {
-                    dispatch(setCurrentPage(pageNumber + 1));
+                    updateQueryParams(pageNumber + 1);
                 }}
             >
                 ›
