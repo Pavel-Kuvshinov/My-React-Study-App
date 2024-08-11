@@ -1,7 +1,7 @@
 import { Link } from '@remix-run/react';
 import './header.css';
 
-import { useTheme } from '@/shared/context/themeMode';
+import { useTheme } from '../../shared/context/themeMode';
 import SearchForm from '../searchForm/searchFrom';
 import brightness from '../../shared/assets/brightness-icon.svg';
 import moon from '../../shared/assets/moon-icon.svg';

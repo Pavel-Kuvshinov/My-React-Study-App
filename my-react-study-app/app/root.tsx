@@ -1,9 +1,9 @@
-import NotFoundPage from '@/pages/notFoundPage/notFoundPage';
-import { ThemeProvider } from '@/shared/context/themeMode';
-import { store } from '@/shared/store/store';
-import ErrorSection from '@/widgets/errorSection/errorSection';
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useRouteError } from '@remix-run/react';
 import { Provider } from 'react-redux';
+import NotFoundPage from '../src/pages/notFoundPage/notFoundPage';
+import { ThemeProvider } from '../src/shared/context/themeMode';
+import { store } from '../src/shared/store/store';
+import ErrorSection from '../src/widgets/errorSection/errorSection';
 import '../src/shared/styles/index.css';
 import '../src/shared/styles/notFoundPage.css';
 
