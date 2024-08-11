@@ -46,9 +46,7 @@ export default function Header({ section }: HeaderProps) {
                 {isDark ? (
                     <img className={styles.theme__button_icon} src={Brightness} alt="bright" />
                 ) : (
-                    // <Brightness className={styles.theme__button_icon} />
                     <img className={styles.theme__button_icon} src={Moon} alt="moon" />
-                    // <Moon className={styles.theme__button_icon} />
                 )}
             </button>
         </header>
