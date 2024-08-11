@@ -1,5 +1,4 @@
 import { Link } from '@remix-run/react';
-import { useAppDispatch } from '../../shared/store/store';
 import './startSection.css';
 import { useTheme } from '../../shared/context/themeMode';
 

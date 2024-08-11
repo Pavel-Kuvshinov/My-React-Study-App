@@ -1,10 +1,8 @@
 import { Link } from '@remix-run/react';
-import { useEffect, useState } from 'react';
 import './header.css';
 
 import { useTheme } from '@/shared/context/themeMode';
 import SearchForm from '../searchForm/searchFrom';
-import { useAppDispatch } from '../../shared/store/store';
 import brightness from '../../shared/assets/brightness-icon.svg';
 import moon from '../../shared/assets/moon-icon.svg';
 

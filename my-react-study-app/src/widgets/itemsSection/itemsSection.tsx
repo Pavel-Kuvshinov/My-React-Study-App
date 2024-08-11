@@ -1,13 +1,9 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-
 import { useSearchParams } from '@remix-run/react';
 import './itemsSection.css';
-import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../shared/store/store';
-import { itemsApi } from '../../shared/api/itemsApi';
-import { ElementRequest, GetCharactersParams, ItemsSectionProps } from '../../shared/types';
+import { ElementRequest, ItemsSectionProps } from '../../shared/types';
 import Pagination from '../pagination/pagination';
-import Loader from '../loader/loader';
 import DetailedItem from '../detailedItem/detailedItem';
 import DetailedItemsControls from '../detailedSection/detailedItemsControls';
 import { itemsSelectedSlice } from '../../shared/store/selectedItemsSlice';

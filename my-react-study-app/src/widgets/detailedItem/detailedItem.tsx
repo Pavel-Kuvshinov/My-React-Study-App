@@ -1,10 +1,6 @@
 import { useLocation, useSearchParams } from '@remix-run/react';
 import './detailedItem.css';
 
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../shared/store/store';
-import { itemsApi } from '../../shared/api/itemsApi';
-import Loader from '../loader/loader';
 import { useTheme } from '../../shared/context/themeMode';
 import { ElementRequest } from '../../shared/types';
 
