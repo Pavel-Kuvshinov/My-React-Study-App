@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-import { afterAll, afterEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { Provider } from 'react-redux';
 import ItemsSection from '../src/widgets/itemsSection/itemsSection';
 import { store } from '../src/shared/store/store';

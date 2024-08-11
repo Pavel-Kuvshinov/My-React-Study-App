@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import StartSection from '../src/widgets/startSection/startSection';
 import { store } from '../src/shared/store/store';
 import { ThemeProvider } from '../src/shared/context/themeMode';
-import mockRouter from 'next-router-mock';
 
 const useRouterPushMock = vi.fn();
 
@@ -27,7 +26,6 @@ describe('Start section', () => {
     });
 
     it('Clicking the start item button saves the section name to the storage', async () => {
-        mockRouter.push('character');
         render(
             <Provider store={store}>
                 <ThemeProvider>

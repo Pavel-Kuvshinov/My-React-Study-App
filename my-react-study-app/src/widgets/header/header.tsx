@@ -3,8 +3,8 @@ import { useTheme } from '../../shared/context/themeMode';
 import SearchForm from '../searchForm/searchFrom';
 import { usePathname, useRouter } from 'next/navigation';
 
-// import Brightness from '../../../src/shared/assets/brightness.svg';
-// import Moon from '../../../src/shared/assets/moon.svg';
+import Brightness from '../../../src/shared/assets/brightness.svg';
+import Moon from '../../../src/shared/assets/moon.svg';
 
 export interface HeaderProps {
     section: string;
@@ -43,11 +43,13 @@ export default function Header({ section }: HeaderProps) {
                 }
                 onClick={toggleTheme}
             >
-                {/* {isDark ? (
-                    <Brightness className={styles.theme__button_icon} />
+                {isDark ? (
+                    <img className={styles.theme__button_icon} src={Brightness} alt="bright" />
                 ) : (
-                    <Moon className={styles.theme__button_icon} />
-                )} */}
+                    // <Brightness className={styles.theme__button_icon} />
+                    <img className={styles.theme__button_icon} src={Moon} alt="moon" />
+                    // <Moon className={styles.theme__button_icon} />
+                )}
             </button>
         </header>
     );
