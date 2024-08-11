@@ -25,7 +25,7 @@ export default function SearchForm() {
     return (
         <form
             data-testid="search-form"
-            className={section !== '' ? 'search_form' : 'search_form hide'}
+            className={section === '' ? 'search_form hide' : 'search_form'}
             onSubmit={onSubmitClick}
         >
             <input className="search_form__input" name="searchQuery" placeholder="search..." />

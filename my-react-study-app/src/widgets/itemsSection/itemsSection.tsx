@@ -31,7 +31,7 @@ export default function ItemsSection(props: ItemsSectionProps) {
                     <div className="main__content">
                         <div className="main__search_section">
                             <div className="main__items">
-                                {Object.keys(data!.info).length !== 0 && <Pagination info={data!.info} />}
+                                {Object.keys(data.info).length !== 0 && <Pagination info={data.info} />}
                                 {data?.results.map((item, index) => {
                                     const currentItem = item as ElementRequest;
                                     return (
@@ -47,11 +47,9 @@ export default function ItemsSection(props: ItemsSectionProps) {
                                                     (elem) => JSON.stringify(elem) === JSON.stringify(currentItem)
                                                 )}
                                                 onChange={(e) => {
-                                                    if (e.target.checked) {
-                                                        dispatch(setSelectedItems(currentItem));
-                                                    } else {
-                                                        dispatch(unsetSelectedItems(currentItem));
-                                                    }
+                                                    e.target.checked
+                                                        ? dispatch(setSelectedItems(currentItem))
+                                                        : dispatch(unsetSelectedItems(currentItem));
                                                 }}
                                             />
                                             <div>

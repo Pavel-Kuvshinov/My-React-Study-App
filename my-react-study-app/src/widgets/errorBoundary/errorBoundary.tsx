@@ -16,14 +16,13 @@ export default class ErrorBoundary extends Component<Props> {
     }
 
     render() {
-        if (this.state.error) {
-            return (
-                <>
-                    <Header />
-                    <ErrorSection />
-                </>
-            );
-        }
-        return this.props.children;
+        return this.state.error ? (
+            <>
+                <Header />
+                <ErrorSection />
+            </>
+        ) : (
+            this.props.children
+        );
     }
 }
