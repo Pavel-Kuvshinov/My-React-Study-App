@@ -9,34 +9,28 @@ import { store } from '../src/shared/store/store';
 import { ThemeProvider } from '../src/shared/context/themeMode';
 import * as storeHooks from '../src/shared/store/store';
 import * as themeHook from '../src/shared/context/themeMode';
+import Index from '../app/routes/_index';
 
-describe('Header', () => {
-    it('Here should be header', () => {
+describe('Index', () => {
+    it('Here should be Index', () => {
         render(
             <Provider store={store}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
-                        <Header />
+                        <Index />
                     </MemoryRouter>
                 </ThemeProvider>
             </Provider>
         );
-
-        const linkElement = screen.getByText('Rick & Morty');
-        expect(linkElement).toBeInTheDocument();
-        expect(linkElement.tagName).toBe('A');
-        expect(linkElement).toHaveAttribute('href', '/');
-        const themeBtn = screen.getByTestId('button-theme');
-        expect(themeBtn).toBeInTheDocument();
     });
 
-    it('Click on the button changed theme', () => {
+    it('Theme should toggled', () => {
         const funcTheme = vi.spyOn(themeHook, 'useTheme');
         const { container } = render(
             <Provider store={store}>
                 <ThemeProvider>
                     <MemoryRouter initialEntries={['/']}>
-                        <Header />
+                        <Index />
                     </MemoryRouter>
                 </ThemeProvider>
             </Provider>
@@ -44,10 +38,14 @@ describe('Header', () => {
 
         const themeBtn = screen.getByTestId('button-theme');
         const header = container.querySelector('.header');
+        const main = container.querySelector('.main');
         expect(header).not.toHaveClass('dark');
+        expect(main).not.toHaveClass('dark');
         fireEvent.click(themeBtn);
         expect(funcTheme).toHaveBeenCalled();
         expect(header).toHaveClass('dark');
         expect(header).not.toHaveClass('light');
+        expect(main).toHaveClass('dark');
+        expect(main).not.toHaveClass('light');
     });
 });
