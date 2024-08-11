@@ -51,13 +51,11 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export default function Character() {
     const props = useLoaderData() as ItemsSectionProps;
-    const { data, section, idItem, dataItem } = props;
-    // console.log(props);
+    const { data, idItem, dataItem } = props;
     return (
         <>
             <Header />
-            <ItemsSection data={data} section={section} idItem={idItem} dataItem={dataItem} />
-            <p>Character</p>
+            <ItemsSection data={data} idItem={idItem} dataItem={dataItem} />
         </>
     );
 }

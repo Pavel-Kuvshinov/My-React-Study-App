@@ -8,7 +8,6 @@ import { itemsApi } from '../../shared/api/itemsApi';
 import { ElementRequest, GetCharactersParams, ItemsSectionProps } from '../../shared/types';
 import Pagination from '../pagination/pagination';
 import Loader from '../loader/loader';
-import { itemsSlice } from '../../shared/store/itemsSlice';
 import DetailedItem from '../detailedItem/detailedItem';
 import DetailedItemsControls from '../detailedSection/detailedItemsControls';
 import { itemsSelectedSlice } from '../../shared/store/selectedItemsSlice';

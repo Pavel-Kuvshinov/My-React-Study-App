@@ -2,7 +2,6 @@ import { useLocation, useSearchParams } from '@remix-run/react';
 import './detailedItem.css';
 
 import { useEffect } from 'react';
-import { itemsSlice } from '../../shared/store/itemsSlice';
 import { useAppDispatch, useAppSelector } from '../../shared/store/store';
 import { itemsApi } from '../../shared/api/itemsApi';
 import Loader from '../loader/loader';
@@ -15,8 +14,6 @@ export interface DetailedItemProps {
 
 export default function DetailedItem({ dataItem }: DetailedItemProps) {
     const { isDark } = useTheme();
-    const { setLoadingCard } = itemsSlice.actions;
-    const dispatch = useAppDispatch();
 
     const location = useLocation();
     const section = location.pathname.replace('/', '');
@@ -28,12 +25,6 @@ export default function DetailedItem({ dataItem }: DetailedItemProps) {
     const updateQueryParams = () => {
         setSearchParams(`?page=${page}&name=${name}`);
     };
-
-    useEffect(() => {
-        if (dataItem) {
-            dispatch(setLoadingCard(false));
-        }
-    }, [dataItem]);
 
     return (
         <div className="main__detailed_section">

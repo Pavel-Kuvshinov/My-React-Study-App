@@ -1,7 +1,6 @@
 import { useLocation, useSearchParams } from '@remix-run/react';
 import './searchForm.css';
 import { useAppDispatch, useAppSelector } from '../../shared/store/store';
-import { itemsSlice } from '../../shared/store/itemsSlice';
 import { useTheme } from '../../shared/context/themeMode';
 
 export default function SearchForm() {

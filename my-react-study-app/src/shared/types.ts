@@ -119,7 +119,7 @@ export interface PaginationProps {
 
 export interface ItemsSectionProps {
     data: ApiRequest;
-    section: string;
+    // section: string;
     idItem: number | undefined | null;
     dataItem: ElementRequest;
 }
