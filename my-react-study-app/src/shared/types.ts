@@ -12,7 +12,7 @@ export enum FormFieldsNames {
 
 export interface DataFormStore {
     name: string;
-    age: string;
+    age: number;
     email: string;
     password: string;
     confirmPassword: string;
@@ -24,7 +24,7 @@ export interface DataFormStore {
 
 export interface DataFormValues {
     name: string;
-    age: string;
+    age: number;
     email: string;
     password: string;
     confirmPassword: string;

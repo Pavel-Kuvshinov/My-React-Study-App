@@ -3,7 +3,7 @@ import { DataFormStore } from '../../types';
 
 const initialFormState: DataFormStore = {
     name: '',
-    age: '',
+    age: 0,
     email: '',
     password: '',
     confirmPassword: '',
