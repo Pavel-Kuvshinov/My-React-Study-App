@@ -1,0 +1,21 @@
+.navigation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.navigation__link {
+    font-family: var(--second-family);
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 115%;
+    color: var(--deep-blue);
+    text-transform: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s;
+    &:hover {
+        color: var(--electric-orange);
+    }
+}

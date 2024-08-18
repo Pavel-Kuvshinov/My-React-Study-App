@@ -1,0 +1,34 @@
+.data_table {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    width: 100%;
+    min-width: 560px;
+    font-family: var(--second-family);
+    font-size: 1.6rem;
+    line-height: 120%;
+    background-color: var(--beige);
+    border: 2px solid var(--beige);
+    border-radius: 2px;
+}
+
+.data_table__header {
+    font-weight: 600;
+}
+
+.data_table__cell {
+    font-weight: 400;
+}
+
+.data_table__header,
+.data_table__cell {
+    background-color: var(--white);
+    border-radius: 2px;
+    padding: 5px;
+}
+
+.data_table__cell_image {
+    display: block;
+    width: 100px;
+    height: auto;
+}
