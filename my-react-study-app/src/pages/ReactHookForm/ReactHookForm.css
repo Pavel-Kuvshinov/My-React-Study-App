@@ -61,6 +61,13 @@
     padding: 0.4rem 1rem;
 }
 
+.input__error {
+    visibility: visible;
+    color: var(--electric-orange);
+    min-height: 14px;
+    font-size: 1rem;
+}
+
 .submit__button {
     background-color: var(--electric-orange);
     padding: 10px;
@@ -74,7 +81,7 @@
     &:hover {
         background-color: var(--deep-blue);
     }
-    &.disabled {
+    &:disabled {
         pointer-events: none;
         background: var(--border-gray);
     }
