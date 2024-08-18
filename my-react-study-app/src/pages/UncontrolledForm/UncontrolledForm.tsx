@@ -14,6 +14,7 @@ function UncontrolledForm() {
 	const navigate = useNavigate();
 	const [errors, setErrors] = useState<DataValidationErrors>({});
 	const [isSubmit, setIsSubmit] = useState<boolean>(false);
+	const [passwordLevel, setPasswordLevel] = useState<string>('');
 
 	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -38,7 +39,6 @@ function UncontrolledForm() {
 					errorsList[path] = { message };
 				  }
 				});
-		
 				setErrors(errorsList);
 				setIsSubmit(true);
 			}
@@ -49,6 +49,19 @@ function UncontrolledForm() {
 		setErrors({});
 		setIsSubmit(false);
 	};
+
+	const handlePasswordChange = (e: FormEvent) => {
+		const inputElement = e.target as HTMLInputElement;
+		if (inputElement.value.length === 0) {
+			setPasswordLevel('')
+		} else if (inputElement.value.length <= 6) {
+			setPasswordLevel('week')
+		} else if (inputElement.value.length > 6 && inputElement.value.length <= 12) {
+			setPasswordLevel('medium')
+		} else if (inputElement.value.length > 12 ) {
+			setPasswordLevel('hard')
+		}
+	}
 
     return (
     	<>
@@ -72,8 +85,8 @@ function UncontrolledForm() {
 							<p className='input__error'>{ errors.email ? errors.email.message : ''}</p>
 						</div>
 						<div className='input__wrapper column'>
-							<label className='input__label' htmlFor='password-input'>Password</label>
-							<input name={FormFieldsNames.Password} className='input__text' id='password-input' type='password'></input>
+							<label className='input__label' htmlFor='password-input'><span>Password</span><span className={`input__label_password ${passwordLevel}`}>{passwordLevel}</span></label>
+							<input onChange={handlePasswordChange} name={FormFieldsNames.Password} className='input__text' id='password-input' type='password'></input>
 							<p className='input__error'>{ errors.password ? errors.password.message : ''}</p>
 						</div>
 						<div className='input__wrapper column'>

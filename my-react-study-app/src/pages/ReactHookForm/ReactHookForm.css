@@ -42,10 +42,26 @@
 
 .input__label {
     position: relative;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
     font-family: var(--font-family);
     font-weight: 500;
     font-size: 1.6rem;
     color: var(--deep-blue);
+}
+
+.input__label_password {
+    color: var(--deep-blue);
+    &.week {
+        color: var(--red);
+    }
+    &.medium {
+        color: var(--electric-orange);
+    }
+    &.hard {
+        color: var(--green);
+    }
 }
 
 .input__text {
@@ -86,3 +102,4 @@
         background: var(--border-gray);
     }
 }
+

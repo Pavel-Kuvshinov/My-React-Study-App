@@ -42,10 +42,26 @@
 
 .input__label {
     position: relative;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
     font-family: var(--font-family);
     font-weight: 500;
     font-size: 1.6rem;
     color: var(--deep-blue);
+}
+
+.input__label_password {
+    color: var(--deep-blue);
+    &.week {
+        color: var(--red);
+    }
+    &.medium {
+        color: var(--electric-orange);
+    }
+    &.hard {
+        color: var(--green);
+    }
 }
 
 .input__text {
@@ -61,6 +77,13 @@
     padding: 0.4rem 1rem;
 }
 
+.input__error {
+    visibility: visible;
+    color: var(--electric-orange);
+    min-height: 14px;
+    font-size: 1rem;
+}
+
 .submit__button {
     background-color: var(--electric-orange);
     padding: 10px;
@@ -74,8 +97,9 @@
     &:hover {
         background-color: var(--deep-blue);
     }
-    &.disabled {
+    &:disabled {
         pointer-events: none;
         background: var(--border-gray);
     }
 }
+

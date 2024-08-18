@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router';
 import { convertFileToBase64 } from '../../features/convertFileToBase64';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationSchema } from '../../shared/validationSchema';
+import { FormEvent, useState } from 'react';
 
 function ReactHookForm() {
 
@@ -23,6 +24,7 @@ function ReactHookForm() {
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const [passwordLevel, setPasswordLevel] = useState<string>('');
 
     const onSubmit = async (data: DataFormValues) => {
 		console.log('send')
@@ -32,6 +34,19 @@ function ReactHookForm() {
         dispatch(setValues({ ...data, picture: base64Picture }));
         navigate('/');
     }
+
+	const handlePasswordChange = (e: FormEvent) => {
+		const inputElement = e.target as HTMLInputElement;
+		if (inputElement.value.length === 0) {
+			setPasswordLevel('')
+		} else if (inputElement.value.length <= 6) {
+			setPasswordLevel('week')
+		} else if (inputElement.value.length > 6 && inputElement.value.length <= 12) {
+			setPasswordLevel('medium')
+		} else if (inputElement.value.length > 12 ) {
+			setPasswordLevel('hard')
+		}
+	}
 
     return (
     	<>
@@ -55,8 +70,8 @@ function ReactHookForm() {
 							<p className='input__error'>{ errors.email ? errors.email.message : ''}</p>
 						</div>
 						<div className='input__wrapper column'>
-							<label className='input__label' htmlFor='password-input'>Password</label>
-							<input {...register('password')} name={FormFieldsNames.Password} className='input__text' id='password-input' type='password'></input>
+							<label className='input__label' htmlFor='password-input'><span>Password</span><span className={`input__label_password ${passwordLevel}`}>{passwordLevel}</span></label>
+							<input onChange={handlePasswordChange} name={FormFieldsNames.Password} className='input__text' id='password-input' type='password'></input>
 							<p className='input__error'>{ errors.password ? errors.password.message : ''}</p>
 						</div>
 						<div className='input__wrapper column'>
