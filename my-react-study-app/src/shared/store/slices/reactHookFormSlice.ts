@@ -1,16 +1,16 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { DataFormStore } from "../../types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { DataFormStore } from '../../types';
 
 const initialFormState: DataFormStore = {
-  name: "",
-  age: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-  gender: "",
-  acceptTerms: false,
-  picture: "",
-  country: "",
+    name: '',
+    age: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    gender: '',
+    acceptTerms: false,
+    picture: '',
+    country: '',
 };
 
 const ReactHookFormSlice = createSlice({
@@ -18,10 +18,10 @@ const ReactHookFormSlice = createSlice({
     initialState: initialFormState,
     reducers: {
         setValues(state, action: PayloadAction<Partial<DataFormStore>>) {
-          return { ...state, ...action.payload };
+            return { ...state, ...action.payload };
         },
         resetValues() {
-          return initialFormState;
+            return initialFormState;
         },
     },
 });

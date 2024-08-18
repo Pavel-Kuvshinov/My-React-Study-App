@@ -1,10 +1,10 @@
-import './CountriesInput.css'
+import './CountriesInput.css';
 
-import { FC, InputHTMLAttributes, useRef, useState } from "react";
-import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { useSelector } from "react-redux";
-import { RootState } from "../../shared/store/store.ts";
-import { DataFormValues, DataValidationErrors } from "../../shared/types.ts";
+import { FC, InputHTMLAttributes, useRef, useState } from 'react';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../shared/store/store.ts';
+import { DataFormValues, DataValidationErrors } from '../../shared/types.ts';
 
 interface CountryAutocompleteProps extends InputHTMLAttributes<HTMLSelectElement> {
     name: keyof DataFormValues;
@@ -19,15 +19,16 @@ const CountryInputAutocomplete: FC<CountryAutocompleteProps> = ({ name, errors, 
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
     const handleInputChange = () => {
-        const inputValue = inputRef.current?.value || "";
+        const inputValue = inputRef.current?.value || '';
 
-        if (inputValue.trim() === "") {
+        if (inputValue.trim() === '') {
             setSuggestions(countries);
         } else {
-            const filteredSuggestions = countries.filter((country: string) => country.toLowerCase().includes(inputValue.toLowerCase()),
-        );
+            const filteredSuggestions = countries.filter((country: string) =>
+                country.toLowerCase().includes(inputValue.toLowerCase())
+            );
 
-        setSuggestions(filteredSuggestions);
+            setSuggestions(filteredSuggestions);
         }
     };
 
@@ -43,33 +44,31 @@ const CountryInputAutocomplete: FC<CountryAutocompleteProps> = ({ name, errors, 
 
     return (
         <div className="input__wrapper column">
-            <label className='input__label' htmlFor='country-input'>Country</label>
+            <label className="input__label" htmlFor="country-input">
+                Country
+            </label>
             <input
                 {...props}
-                id='country-input'
+                id="country-input"
                 name={name}
                 type="text"
                 ref={inputRef}
                 onChange={handleInputChange}
-                className='input__text'
+                className="input__text"
                 autoComplete="off"
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
             />
             {isFocused && suggestions.length > 0 && (
-            <ul className='suggestion_list'>
-                {suggestions.map((item, index) => (
-                    <li
-                        className='suggestion_item'
-                        key={index}
-                        onMouseDown={() => handleSuggestionClick(item)}
-                    >
-                        {item}
-                    </li>
-                ))}
-            </ul>
+                <ul className="suggestion_list">
+                    {suggestions.map((item, index) => (
+                        <li className="suggestion_item" key={index} onMouseDown={() => handleSuggestionClick(item)}>
+                            {item}
+                        </li>
+                    ))}
+                </ul>
             )}
-            <p className='input__error'>{ errors.country ? errors.country.message : ''}</p>
+            <p className="input__error">{errors.country ? errors.country.message : ''}</p>
         </div>
     );
 };

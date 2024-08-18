@@ -1,7 +1,7 @@
-import { configureStore } from "@reduxjs/toolkit";
-import UncontrolledFormReducer from "./slices/uncontrolledFormSlice";
-import ReactHookFormReducer from "./slices/reactHookFormSlice";
-import countries from "./slices/countriesSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import UncontrolledFormReducer from './slices/uncontrolledFormSlice';
+import ReactHookFormReducer from './slices/reactHookFormSlice';
+import countries from './slices/countriesSlice';
 
 const store = configureStore({
     reducer: {

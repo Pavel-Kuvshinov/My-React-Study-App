@@ -1,15 +1,15 @@
 export enum FormFieldsNames {
-    Name = "name",
-    Age = "age",
-    Email = "email",
-    Password = "password",
-    ConfirmPassword = "confirmPassword",
-    Gender = "gender",
-    Picture = "picture",
-    Country = "country",
-    AcceptTerms = "acceptTerms",
+    Name = 'name',
+    Age = 'age',
+    Email = 'email',
+    Password = 'password',
+    ConfirmPassword = 'confirmPassword',
+    Gender = 'gender',
+    Picture = 'picture',
+    Country = 'country',
+    AcceptTerms = 'acceptTerms',
 }
-  
+
 export interface DataFormStore {
     name: string;
     age: string;
@@ -17,7 +17,7 @@ export interface DataFormStore {
     password: string;
     confirmPassword: string;
     gender: string;
-    picture: string
+    picture: string;
     country: string;
     acceptTerms: boolean;
 }
@@ -44,4 +44,4 @@ export interface DataValidationErrors {
     picture?: { message: string };
     country?: { message: string };
     gender?: { message: string };
-  }
+}

@@ -29,12 +29,12 @@
 
 .input__wrapper {
     display: flex;
-    &.column{
+    &.column {
         flex-direction: column;
         width: 100%;
         gap: 4px;
     }
-    &.row{
+    &.row {
         flex-direction: row;
         align-items: center;
         gap: 10px;
@@ -103,4 +103,3 @@
         background: var(--border-gray);
     }
 }
-

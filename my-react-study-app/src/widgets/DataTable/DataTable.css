@@ -20,7 +20,8 @@
     font-weight: 400;
 }
 
-.data_table__header, .data_table__cell {
+.data_table__header,
+.data_table__cell {
     background-color: var(--white);
     border-radius: 2px;
     padding: 5px;
