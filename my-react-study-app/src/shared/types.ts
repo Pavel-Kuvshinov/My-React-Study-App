@@ -5,9 +5,9 @@ export enum FormFieldsNames {
     Gender = "gender",
     Password = "password",
     ConfirmPassword = "confirmPassword",
-    AcceptTerms = "acceptTerms",
-    // Picture = "picture",
+    Picture = "picture",
     Country = "country",
+    AcceptTerms = "acceptTerms",
 }
   
   export interface FormValues {
@@ -17,8 +17,8 @@ export enum FormFieldsNames {
     password: string;
     confirmPassword: string;
     gender: string;
-    acceptTerms: "on" | boolean | "";
-    picture?: File | string;
+    picture: FileList | File | string;
     country: string;
+    acceptTerms: "on" | boolean | "";
 }
   

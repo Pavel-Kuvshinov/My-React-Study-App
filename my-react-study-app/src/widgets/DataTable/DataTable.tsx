@@ -7,8 +7,8 @@ import { RootState } from '../../shared/store/store';
 function DataTable() {
 	const uncontrolledFormData = useSelector((state: RootState) => state.UncontrolledFormReducer);
 	const reactHookFormData = useSelector((state: RootState) => state.ReactHookFormReducer);
-	console.log(uncontrolledFormData);
-	console.log(reactHookFormData);
+	// console.log(uncontrolledFormData);
+	// console.log(reactHookFormData);
   
     return (
 		<>
@@ -21,10 +21,10 @@ function DataTable() {
 					<React.Fragment key={fieldName}>
 						<div className="data_table__cell">{key}:</div>
 						<div className="data_table__cell">
-							{!uncontrolledFormData[fieldName] ? 'No data' : uncontrolledFormData[fieldName] === "on" ? "✅" : uncontrolledFormData[fieldName] }
+							{uncontrolledFormData[fieldName] ? fieldName === FormFieldsNames.Picture ? <img className='data_table__cell_image' src={uncontrolledFormData[fieldName] as string} alt="img" /> : uncontrolledFormData[fieldName] === "on" ? "✅" : uncontrolledFormData[fieldName] : 'No data' }
 						</div>
 						<div className="data_table__cell">
-							{!reactHookFormData[fieldName] ? 'No data' : reactHookFormData[fieldName] === true ? "✅" : reactHookFormData[fieldName] }
+							{reactHookFormData[fieldName] ? fieldName === FormFieldsNames.Picture ? <img className='data_table__cell_image' src={reactHookFormData[fieldName] as string} alt="img" /> : reactHookFormData[fieldName] === true ? "✅" : reactHookFormData[fieldName] : 'No data' }
 						</div>
 					</React.Fragment>
 					);

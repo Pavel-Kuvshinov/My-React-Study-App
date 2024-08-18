@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { FormFieldsNames, FormValues } from "../../shared/types";
 import { setValues } from "../../shared/store/slices/reactHookFormSlice";
 import { useNavigate } from 'react-router';
+import { convertFileToBase64 } from '../../features/convertFileToBase64';
 
 function ReactHookForm() {
 
@@ -21,9 +22,11 @@ function ReactHookForm() {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-    const onSubmit = (data: FormValues) => {
-        console.log({ ...data });
-        dispatch(setValues({ ...data }));
+    const onSubmit = async (data: FormValues) => {
+
+		const pictures = data.picture as FileList;
+		const base64Picture = await convertFileToBase64(pictures[0] as File);
+        dispatch(setValues({ ...data, picture: base64Picture }));
         navigate('/');
     }
 
@@ -61,10 +64,10 @@ function ReactHookForm() {
 								<option value={'female '}>Female</option>
 							</select>
 						</div>
-						{/* <div className='input__wrapper column'>
+						<div className='input__wrapper column'>
 							<label className='input__label' htmlFor='file-input'>Upload file</label>
-							<input className='input__text' id='file-input' type="file" accept="image/png, image/jpeg"></input>
-						</div> */}
+							<input {...register('picture')} name={FormFieldsNames.Picture} className='input__text' id='file-input' type="file" accept="image/png, image/jpeg"></input>
+						</div>
 						<div className='input__wrapper column'>
 							<label className='input__label' htmlFor='country-input'>Country</label>
 							<input {...register('country')} name={FormFieldsNames.Country} className='input__text' id='country-input' type="text"></input>

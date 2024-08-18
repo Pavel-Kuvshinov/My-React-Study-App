@@ -4,6 +4,7 @@ import './UncontrolledForm.css'
 import { FormFieldsNames } from "../../shared/types";
 import { setValues } from "../../shared/store/slices/uncontrolledFormSlice";
 import { useNavigate } from 'react-router';
+import { convertFileToBase64 } from '../../features/convertFileToBase64';
 
 function UncontrolledForm() {
 
@@ -12,13 +13,14 @@ function UncontrolledForm() {
 
 	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-	
 		const formData = new FormData(event.currentTarget);
 		const values = Object.fromEntries(formData.entries());
-		dispatch(setValues({ ...values }));
+		const base64Picture = await convertFileToBase64(values.picture as File);
+		
+		dispatch(setValues({ ...values, picture: base64Picture }));
 		navigate('/');
-		console.log(formData);
-		console.log(values);
+		// console.log(formData);
+		// console.log(values);
 	};
 
     return (
@@ -55,17 +57,17 @@ function UncontrolledForm() {
 								<option value={'female '}>Female</option>
 							</select>
 						</div>
-						{/* <div className='input__wrapper column'>
-							<label className='input__label' htmlFor='file-input'>Upload file</label>
-							<input className='input__text' id='file-input' type="file" accept="image/png, image/jpeg"></input>
-						</div> */}
 						<div className='input__wrapper column'>
-							<label className='input__label' htmlFor='file-input'>Country</label>
-							<input name={FormFieldsNames.Country} className='input__text' id='file-input' type="text"></input>
+							<label className='input__label' htmlFor='file-input'>Upload file</label>
+							<input name={FormFieldsNames.Picture} className='input__text' id='file-input' type="file" accept="image/png, image/jpeg"></input>
+						</div>
+						<div className='input__wrapper column'>
+							<label className='input__label' htmlFor='country-input'>Country</label>
+							<input name={FormFieldsNames.Country} className='input__text' id='country-input' type="text"></input>
 						</div>
 						<div className='input__wrapper row'>
-							<label className='input__label' htmlFor='file-input'>Accept Terms</label>
-							<input name={FormFieldsNames.AcceptTerms} id='file-input' type="checkbox"></input>
+							<label className='input__label' htmlFor='acceptTerms-input'>Accept Terms</label>
+							<input name={FormFieldsNames.AcceptTerms} id='acceptTerms-input' type="checkbox"></input>
 						</div>
 						<button className={`submit__button`} type="submit">
 							Send Form
