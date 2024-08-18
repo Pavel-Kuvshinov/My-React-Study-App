@@ -7,6 +7,7 @@ import { setValues } from "../../shared/store/slices/uncontrolledFormSlice";
 import { useNavigate } from 'react-router';
 import { validationSchema } from "../../shared/validationSchema";
 import { convertFileToBase64 } from '../../features/convertFileToBase64';
+import CountryInputAutocomplete from '../../widgets/CountriesInput/CountriesInput';
 
 function UncontrolledForm() {
 
@@ -108,11 +109,7 @@ function UncontrolledForm() {
 							<input name={FormFieldsNames.Picture} className='input__text' id='file-input' type="file" accept="image/png, image/jpeg"></input>
 							<p className='input__error'>{ errors.picture ? errors.picture.message : ''}</p>
 						</div>
-						<div className='input__wrapper column'>
-							<label className='input__label' htmlFor='country-input'>Country</label>
-							<input name={FormFieldsNames.Country} className='input__text' id='country-input' type="text"></input>
-							<p className='input__error'>{ errors.country ? errors.country.message : ''}</p>
-						</div>
+						<CountryInputAutocomplete name={FormFieldsNames.Country} errors={errors} />
 						<div className='input__wrapper row'>
 							<label className='input__label' htmlFor='acceptTerms-input'>Accept Terms</label>
 							<input name={FormFieldsNames.AcceptTerms} id='acceptTerms-input' type="checkbox"></input>

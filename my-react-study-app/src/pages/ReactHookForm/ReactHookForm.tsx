@@ -10,6 +10,7 @@ import { convertFileToBase64 } from '../../features/convertFileToBase64';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationSchema } from '../../shared/validationSchema';
 import { FormEvent, useState } from 'react';
+import CountryInputAutocomplete from '../../widgets/CountriesInput/CountriesInput';
 
 function ReactHookForm() {
 
@@ -93,12 +94,7 @@ function ReactHookForm() {
 							<input {...register('picture')} name={FormFieldsNames.Picture} className='input__text' id='file-input' type="file" accept="image/png, image/jpeg"></input>
 							<p className='input__error'>{ errors.picture ? errors.picture.message : ''}</p>
 						</div>
-						<div className='input__wrapper column'>
-							<label className='input__label' htmlFor='country-input'>Country</label>
-							<input {...register('country')} name={FormFieldsNames.Country} className='input__text' id='country-input' type="text"></input>
-							<p className='input__error'>{ errors.country ? errors.country.message : ''}</p>
-						</div>
-						
+						<CountryInputAutocomplete name={FormFieldsNames.Country} errors={errors} register={register} />
 						<div className='input__wrapper row'>
 							<label className='input__label' htmlFor='acceptTerms-input'>Accept Terms</label>
 							<input {...register('acceptTerms')} name={FormFieldsNames.AcceptTerms} id='acceptTerms-input' type="checkbox"></input>

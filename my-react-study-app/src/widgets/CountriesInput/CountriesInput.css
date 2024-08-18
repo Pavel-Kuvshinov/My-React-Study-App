@@ -1,0 +1,21 @@
+.suggestion_list {
+    position: absolute;
+    bottom: 0;
+    z-index: 100;
+    width: 100%;
+    border-radius: 5px;
+    overflow: auto;
+    max-height: 100px;
+    background-color: var(--white);
+}
+
+.suggestion_item {
+    color: var(--deep-blue);
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 150%;
+    transition: all 0.5s;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+}

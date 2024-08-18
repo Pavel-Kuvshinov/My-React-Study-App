@@ -23,7 +23,7 @@
     flex-direction: column;
     width: 100%;
     min-width: 400px;
-    gap: 10px;
+    gap: 5px;
 }
 
 .input__wrapper {
@@ -31,7 +31,7 @@
     &.column{
         flex-direction: column;
         width: 100%;
-        gap: 8px;
+        gap: 4px;
     }
     &.row{
         flex-direction: row;
