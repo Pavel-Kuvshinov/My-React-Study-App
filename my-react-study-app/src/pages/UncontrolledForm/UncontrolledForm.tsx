@@ -11,6 +11,7 @@ import CountryInputAutocomplete from '../../widgets/CountriesInput/CountriesInpu
 import FormInput from '../../widgets/FormInput/FormInput';
 import PasswordInput from '../../widgets/PasswordInput/PasswordInput';
 import SelectInput from '../../widgets/SelectInput/SelectInput';
+import SubmitButton from '../../shared/components/submitButton';
 
 function UncontrolledForm() {
     const dispatch = useDispatch();
@@ -116,9 +117,7 @@ function UncontrolledForm() {
                             coverClass={'input__wrapper row'}
                             errors={errors}
                         />
-                        <button className={`submit__button`} type="submit" disabled={isSubmit}>
-                            Send Form
-                        </button>
+                        <SubmitButton isDisabled={isSubmit} />
                     </form>
                 </div>
             </div>

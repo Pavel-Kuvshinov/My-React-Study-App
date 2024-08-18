@@ -1,4 +1,4 @@
-.uncontrolledForm__wrapper {
+.reactHookForm__wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,7 +8,7 @@
     min-height: calc(100vh - 72px);
 }
 
-.uncontrolledForm__heading {
+.reactHookForm__heading {
     font-family: var(--second-family);
     font-weight: 600;
     font-size: 2.2rem;
@@ -16,89 +16,10 @@
     color: var(--deep-blue);
 }
 
-/* */
-
-.uncontrolledForm {
+.reactHookForm {
     display: flex;
     flex-direction: column;
     width: 100%;
     min-width: 400px;
     gap: 5px;
-}
-
-.input__wrapper {
-    display: flex;
-    &.column {
-        flex-direction: column;
-        width: 100%;
-        gap: 4px;
-    }
-    &.row {
-        flex-direction: row;
-        align-items: center;
-        gap: 10px;
-    }
-}
-
-.input__label {
-    position: relative;
-    display: inline-flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-family: var(--font-family);
-    font-weight: 500;
-    font-size: 1.6rem;
-    color: var(--deep-blue);
-}
-
-.input__label_password {
-    color: var(--deep-blue);
-    &.week {
-        color: var(--red);
-    }
-    &.medium {
-        color: var(--electric-orange);
-    }
-    &.hard {
-        color: var(--green);
-    }
-}
-
-.input__text {
-    border: 1px solid var(--border-gray);
-    color: var(--deep-blue);
-    height: 36px;
-    font-family: var(--font-family);
-    font-weight: 500;
-    font-size: 1.6rem;
-    line-height: 150%;
-    transition: all 0.5s;
-    display: inline-flex;
-    padding: 0.4rem 1rem;
-}
-
-.input__error {
-    visibility: visible;
-    color: var(--electric-orange);
-    min-height: 14px;
-    font-size: 1rem;
-}
-
-.submit__button {
-    background-color: var(--electric-orange);
-    padding: 10px;
-    width: 100%;
-    font-family: var(--second-family);
-    font-weight: 600;
-    font-size: 1.8rem;
-    text-transform: uppercase;
-    color: var(--white);
-    transition: all 0.5s;
-    &:hover {
-        background-color: var(--deep-blue);
-    }
-    &:disabled {
-        pointer-events: none;
-        background: var(--border-gray);
-    }
 }

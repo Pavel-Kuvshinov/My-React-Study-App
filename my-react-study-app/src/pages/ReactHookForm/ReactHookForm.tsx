@@ -13,13 +13,13 @@ import CountryInputAutocomplete from '../../widgets/CountriesInput/CountriesInpu
 import FormInput from '../../widgets/FormInput/FormInput';
 import PasswordInput from '../../widgets/PasswordInput/PasswordInput';
 import SelectInput from '../../widgets/SelectInput/SelectInput';
+import SubmitButton from '../../shared/components/submitButton';
 
 function ReactHookForm() {
     const {
         register,
         handleSubmit,
         formState: { errors, isValid },
-        watch,
         setValue,
     } = useForm<DataFormValues>({
         mode: 'all',
@@ -38,10 +38,10 @@ function ReactHookForm() {
 
     return (
         <>
-            <div className="uncontrolledForm__wrapper">
-                <h1 className="uncontrolledForm__heading">React Hook Form.</h1>
+            <div className="reactHookForm__wrapper">
+                <h1 className="reactHookForm__heading">React Hook Form.</h1>
                 <div className="form__wrapper">
-                    <form className="uncontrolledForm" onSubmit={handleSubmit(onSubmit)}>
+                    <form className="reactHookForm" onSubmit={handleSubmit(onSubmit)}>
                         <FormInput
                             name={FormFieldsNames.Name}
                             label={'Name'}
@@ -102,7 +102,6 @@ function ReactHookForm() {
                             name={FormFieldsNames.Country}
                             errors={errors}
                             register={register}
-                            watch={watch}
                             setValue={setValue}
                         />
                         <FormInput
@@ -113,9 +112,7 @@ function ReactHookForm() {
                             errors={errors}
                             register={register}
                         />
-                        <button disabled={!isValid} className={`submit__button`} type="submit">
-                            Send Form
-                        </button>
+                        <SubmitButton isDisabled={!isValid} />
                     </form>
                 </div>
             </div>

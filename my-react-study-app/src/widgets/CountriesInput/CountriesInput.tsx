@@ -1,7 +1,7 @@
 import './CountriesInput.css';
 
 import { FC, InputHTMLAttributes, useRef, useState } from 'react';
-import { FieldErrors, UseFormRegister, UseFormWatch, UseFormSetValue } from 'react-hook-form';
+import { FieldErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../shared/store/store.ts';
 import { DataFormValues, DataValidationErrors } from '../../shared/types.ts';
@@ -10,18 +10,21 @@ interface CountryAutocompleteProps extends InputHTMLAttributes<HTMLSelectElement
     name: keyof DataFormValues;
     errors: DataValidationErrors | FieldErrors<DataFormValues>;
     register?: UseFormRegister<DataFormValues>;
-    watch?: UseFormWatch<DataFormValues>;
     setValue?: UseFormSetValue<DataFormValues>;
 }
 
-const CountryInputAutocomplete: FC<CountryAutocompleteProps> = ({ name, errors, register, watch, setValue }) => {
+const CountryInputAutocomplete: FC<CountryAutocompleteProps> = ({ name, errors, register, setValue }) => {
     const countries = useSelector((state: RootState) => state.countries);
     const inputRef = useRef<HTMLInputElement>(null);
     const [suggestions, setSuggestions] = useState<string[]>(countries);
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
     const handleInputChange = () => {
-        const inputValue = watch ? (watch(name) as string) : '';
+        const inputValue = inputRef.current?.value || '';
+
+        if (setValue) {
+            setValue(name, inputValue);
+        }
 
         if (inputValue.trim() === '') {
             setSuggestions(countries);

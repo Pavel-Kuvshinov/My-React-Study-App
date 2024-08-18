@@ -1,0 +1,18 @@
+.submit__button {
+    background-color: var(--electric-orange);
+    padding: 10px;
+    width: 100%;
+    font-family: var(--second-family);
+    font-weight: 600;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    color: var(--white);
+    transition: all 0.5s;
+    &:hover {
+        background-color: var(--deep-blue);
+    }
+    &:disabled {
+        pointer-events: none;
+        background: var(--border-gray);
+    }
+}

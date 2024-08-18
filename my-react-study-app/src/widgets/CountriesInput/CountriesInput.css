@@ -1,11 +1,11 @@
 .suggestion_list {
     position: absolute;
-    bottom: 0;
+    bottom: -90px;
     z-index: 100;
     width: 100%;
     border-radius: 5px;
     overflow: auto;
-    max-height: 100px;
+    max-height: 104px;
     background-color: var(--white);
 }
 
