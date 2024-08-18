@@ -1,78 +1,59 @@
-module.exports = {
-    env: {
-        browser: true,
-        es2021: true,
-    },
-    extends: [
-        'airbnb',
-        'airbnb-typescript',
-        'airbnb/hooks',
-        'plugin:@typescript-eslint/recommended',
-        'plugin:react/recommended',
-        'plugin:prettier/recommended',
-    ],
-    overrides: [
-        {
-            env: {
-                node: true,
+import globals from 'globals';
+import pluginJs from '@eslint/js';
+import tsEslint from 'typescript-eslint';
+import tsParser from '@typescript-eslint/parser';
+import pluginReact from 'eslint-plugin-react';
+import eslintReactHooks from 'eslint-plugin-react-hooks';
+import eslintReactRefresh from 'eslint-plugin-react-refresh';
+import eslintReactCompiler from 'eslint-plugin-react-compiler';
+import prettierPlugin from 'eslint-plugin-prettier';
+import eslintConfigPrettier from 'eslint-config-prettier';
+
+export default [
+    {
+        plugins: {
+            ts: tsEslint.plugin,
+            'react-hooks': eslintReactHooks,
+            react: pluginReact,
+            'react-refresh': eslintReactRefresh,
+            'react-compiler': eslintReactCompiler,
+            prettier: prettierPlugin,
+        },
+        settings: {
+            react: {
+                version: 'detect',
             },
-            files: ['.eslintrc.{js,cjs}'],
+        },
+    },
+    {
+        files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
+        rules: {
+            ...eslintConfigPrettier.rules,
+            ...prettierPlugin.configs.recommended.rules,
+            'react/react-in-jsx-scope': 0,
+            '@typescript-eslint/no-explicit-any': 2,
+            'react/no-unescaped-entities': 2,
+            'react-compiler/react-compiler': 'error',
+        },
+    },
+    {
+        languageOptions: {
+            ecmaVersion: 2022,
+            sourceType: 'module',
+            parser: tsParser,
             parserOptions: {
-                sourceType: 'script',
+                project: ['tsconfig.json', 'tsconfig.node.json', 'tsconfig.app.json'],
             },
-        },
-    ],
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        project: './tsconfig.json',
-        tsconfigRootDir: __dirname,
-    },
-    plugins: ['@typescript-eslint', 'react', 'prettier'],
-    settings: {
-        'import/resolver': {
-            node: {
-                path: ['src'],
-                extensions: ['.js', '.jsx', '.ts', '.d.ts', '.tsx'],
-            },
-            typescript: {
-                project: './tsconfig.json',
+            globals: {
+                ...globals.browser,
+                ...globals.es2022,
             },
         },
     },
-    ignorePatterns: ['*.config.cjs'],
-    rules: {
-        'no-shadow': 'off',
-        'react/react-in-jsx-scope': 0,
-        '@typescript-eslint/no-explicit-any': 2,
-        'import/extensions': [
-            'error',
-            'ignorePackages',
-            {
-                js: 'never',
-                jsx: 'never',
-                ts: 'never',
-                tsx: 'never',
-            },
-        ],
-        'no-nested-ternary': 0,
-        'react/jsx-props-no-spreading': 0,
-        'jsx-a11y/label-has-associated-control': [
-            'error',
-            {
-                required: {
-                    some: ['nesting', 'id'],
-                },
-            },
-        ],
-        'jsx-a11y/label-has-for': [
-            'error',
-            {
-                required: {
-                    some: ['nesting', 'id'],
-                },
-            },
-        ],
-    },
-};
+    { ignores: ['node_modules', 'dist', 'coverage', 'eslint.config.js'] },
+
+    pluginJs.configs.recommended,
+    ...tsEslint.configs.recommended,
+    pluginReact.configs.flat.recommended,
+    pluginReact.configs.flat['jsx-runtime'],
+];

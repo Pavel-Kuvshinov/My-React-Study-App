@@ -6,7 +6,7 @@ function HomePage() {
         <>
             <div className="home__wrapper">
                 <p className="home__heading">Hi everyone.</p>
-                <p className="home__text">If you don't see data, please choose form and enter data.</p>
+                <p className="home__text">If you don&apos;t see data, please choose form and enter data.</p>
                 <DataTable />
             </div>
         </>
