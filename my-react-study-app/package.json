@@ -10,8 +10,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix --color .",
     "prepare": "husky install",
-    "format": "prettier . --check",
-    "format:fix": "prettier . --write"
+    "format": "prettier --check ./src",
+    "format:fix": "prettier --write ./src"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -41,14 +41,5 @@
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.0",
     "vite": "^5.4.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "./src/**/*": "npm run format",
-    "./src/**/*.{tsx,jsx,ts}": "npm run lint" 
   }
 }
